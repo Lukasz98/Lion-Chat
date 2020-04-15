@@ -9,5 +9,7 @@ public class Main {
         frame.setBounds(200, 200, 1000, 700);
         frame.getContentPane().setBackground(Color.decode("#191919"));
         frame.setVisible(true);
+
+
     }
 }
