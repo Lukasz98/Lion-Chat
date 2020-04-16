@@ -1,7 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="fd09e8de-0a6c-431c-b9b1-0c0c4466ecc4" name="Default Changelist" comment="" />
+    <list default="true" id="fd09e8de-0a6c-431c-b9b1-0c0c4466ecc4" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Lion-Chat/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Lion-Chat-Server/MySQL.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Lion-Chat-Server/MySQL.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MySQL.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MySQL.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lion-Chat/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Lion-Chat/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lion-Chat/out/production/Lion-Chat/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Lion-Chat/out/production/Lion-Chat/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lion-Chat/src/LoginPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Lion-Chat/src/LoginPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lion-Chat/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Lion-Chat/src/Main.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -14,7 +25,11 @@
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
   <component name="ProjectId" id="1aZXikduiGD4KJNJqrD69kQijFP" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
@@ -22,7 +37,8 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="/usr/share/java/mariadb-jdbc/mariadb-java-client.jar!/" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Lion-Chat" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -63,45 +79,49 @@
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="270" y="281" width="529" height="414" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1586944263378" />
-    <state x="1091" y="262" width="595" height="498" key="FileChooserDialogImpl" timestamp="1586951902441">
+    <state x="1089" y="246" width="595" height="498" key="FileChooserDialogImpl" timestamp="1587049396258">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state x="1091" y="262" width="595" height="498" key="FileChooserDialogImpl/0.0.1920.1080@0.0.1920.1080" timestamp="1586951902441" />
-    <state width="1864" height="281" key="GridCell.Tab.0.bottom" timestamp="1586955159178">
+    <state x="1089" y="246" width="595" height="498" key="FileChooserDialogImpl/0.0.1920.1080@0.0.1920.1080" timestamp="1587049396258" />
+    <state width="1864" height="277" key="GridCell.Tab.0.bottom" timestamp="1587055680819">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1864" height="281" key="GridCell.Tab.0.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1586955159178" />
-    <state width="1864" height="281" key="GridCell.Tab.0.center" timestamp="1586955159177">
+    <state width="1864" height="277" key="GridCell.Tab.0.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1587055680819" />
+    <state width="1864" height="277" key="GridCell.Tab.0.center" timestamp="1587055680818">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1864" height="281" key="GridCell.Tab.0.center/0.0.1920.1080@0.0.1920.1080" timestamp="1586955159177" />
-    <state width="1864" height="281" key="GridCell.Tab.0.left" timestamp="1586955159177">
+    <state width="1864" height="277" key="GridCell.Tab.0.center/0.0.1920.1080@0.0.1920.1080" timestamp="1587055680818" />
+    <state width="1864" height="277" key="GridCell.Tab.0.left" timestamp="1587055680818">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1864" height="281" key="GridCell.Tab.0.left/0.0.1920.1080@0.0.1920.1080" timestamp="1586955159177" />
-    <state width="1864" height="281" key="GridCell.Tab.0.right" timestamp="1586955159177">
+    <state width="1864" height="277" key="GridCell.Tab.0.left/0.0.1920.1080@0.0.1920.1080" timestamp="1587055680818" />
+    <state width="1864" height="277" key="GridCell.Tab.0.right" timestamp="1587055680818">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1864" height="281" key="GridCell.Tab.0.right/0.0.1920.1080@0.0.1920.1080" timestamp="1586955159177" />
-    <state width="1864" height="352" key="GridCell.Tab.1.bottom" timestamp="1586954727207">
+    <state width="1864" height="277" key="GridCell.Tab.0.right/0.0.1920.1080@0.0.1920.1080" timestamp="1587055680818" />
+    <state width="1864" height="352" key="GridCell.Tab.1.bottom" timestamp="1586957963939">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1864" height="352" key="GridCell.Tab.1.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1586954727207" />
-    <state width="1864" height="352" key="GridCell.Tab.1.center" timestamp="1586954727206">
+    <state width="1864" height="352" key="GridCell.Tab.1.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1586957963939" />
+    <state width="1864" height="352" key="GridCell.Tab.1.center" timestamp="1586957963939">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1864" height="352" key="GridCell.Tab.1.center/0.0.1920.1080@0.0.1920.1080" timestamp="1586954727206" />
-    <state width="1864" height="352" key="GridCell.Tab.1.left" timestamp="1586954727206">
+    <state width="1864" height="352" key="GridCell.Tab.1.center/0.0.1920.1080@0.0.1920.1080" timestamp="1586957963939" />
+    <state width="1864" height="352" key="GridCell.Tab.1.left" timestamp="1586957963939">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1864" height="352" key="GridCell.Tab.1.left/0.0.1920.1080@0.0.1920.1080" timestamp="1586954727206" />
-    <state width="1864" height="352" key="GridCell.Tab.1.right" timestamp="1586954727207">
+    <state width="1864" height="352" key="GridCell.Tab.1.left/0.0.1920.1080@0.0.1920.1080" timestamp="1586957963939" />
+    <state width="1864" height="352" key="GridCell.Tab.1.right" timestamp="1586957963939">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1864" height="352" key="GridCell.Tab.1.right/0.0.1920.1080@0.0.1920.1080" timestamp="1586954727207" />
+    <state width="1864" height="352" key="GridCell.Tab.1.right/0.0.1920.1080@0.0.1920.1080" timestamp="1586957963939" />
     <state x="884" y="149" width="1028" height="833" key="SettingsEditor" timestamp="1586951492701">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="884" y="149" width="1028" height="833" key="SettingsEditor/0.0.1920.1080@0.0.1920.1080" timestamp="1586951492701" />
+    <state x="144" y="253" width="672" height="677" key="run.anything.popup" timestamp="1586956854334">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="144" y="253" width="672" height="677" key="run.anything.popup/0.0.1920.1080@0.0.1920.1080" timestamp="1586956854334" />
   </component>
 </project>

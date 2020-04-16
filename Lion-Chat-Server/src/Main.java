@@ -15,7 +15,10 @@ public class Main {
             return;
         }
 
-        MySQL.LoadPrintTest();
+        Listener listener = new Listener();
+        listener.run();
+
+        //MySQL.LoadPrintTest();
     }
 
 }

@@ -15,6 +15,26 @@ public class MySQL {
 
     public static void Init() throws SQLException {
         mysql = new MySQL();
+        Statement stmt = mysql.conn.createStatement();
+        stmt.executeQuery("use lion_chat");
+    }
+
+    public synchronized static int tryToLogin(String login, String passwd) {
+        synchronized (mysql) {
+            try {
+                Statement stmt = mysql.conn.createStatement();
+                ResultSet rs = stmt.executeQuery(
+                    "SELECT id, login, passwd FROM userrs WHERE login='" + login + "' AND passwd='" + passwd + "';"
+                );
+                while (rs.next()) {
+                    System.out.println(rs.getString("login"));
+                    return rs.getInt("passwd");
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return -1;
     }
 
     public static void LoadPrintTest() {
