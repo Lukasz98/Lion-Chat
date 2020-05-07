@@ -48,7 +48,7 @@ public class ClientThread extends Thread {
             logged = true;
             id = log;
             System.out.println("Logged");
-            String msg = "logged " + Integer.toString(id);
+            String msg = "logged " + Integer.toString(id) + " " + words[1];
             send(msg);
         }
     }

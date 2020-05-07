@@ -2,15 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="577d9e09-a645-45e2-890d-9a3c7fd05001" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../Lion-Chat-Server/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Lion-Chat-Server/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Lion-Chat-Server/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lion-Chat-Server/out/production/Lion-Chat-Server/ClientThread.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Lion-Chat-Server/out/production/Lion-Chat-Server/ClientThread.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Lion-Chat-Server/out/production/Lion-Chat-Server/MySQL.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Lion-Chat-Server/out/production/Lion-Chat-Server/MySQL.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Lion-Chat-Server/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Lion-Chat-Server/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lion-Chat-Server/src/ClientThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Lion-Chat-Server/src/ClientThread.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Lion-Chat-Server/src/MySQL.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Lion-Chat-Server/src/MySQL.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Lion-Chat/Connection.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Lion-Chat/Connection.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Lion-Chat/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Lion-Chat/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LoginPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LoginPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Connection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Connection.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -29,10 +29,11 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="ProjectId" id="1aZXa5mLRhOxUKJqsvFOdMA34rp" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showExcludedFiles" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
@@ -67,29 +68,37 @@
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="834" y="168" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1586944194352" />
+    <state x="766" y="240" width="378" height="567" key="#com.intellij.ide.util.MemberChooser" timestamp="1588865725258">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="766" y="240" width="378" height="567" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1080@0.0.1920.1080" timestamp="1588865725258" />
     <state x="1106" y="281" width="529" height="414" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1586944192672">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="1106" y="281" width="529" height="414" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1586944192672" />
-    <state width="1864" height="281" key="GridCell.Tab.0.bottom" timestamp="1587055683745">
+    <state x="741" y="288" width="428" height="472" key="FileChooserDialogImpl" timestamp="1587803070394">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1864" height="281" key="GridCell.Tab.0.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1587055683745" />
-    <state width="1864" height="281" key="GridCell.Tab.0.center" timestamp="1587055683744">
+    <state x="741" y="288" width="428" height="472" key="FileChooserDialogImpl/0.0.1920.1080@0.0.1920.1080" timestamp="1587803070394" />
+    <state width="1864" height="280" key="GridCell.Tab.0.bottom" timestamp="1588867559929">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1864" height="281" key="GridCell.Tab.0.center/0.0.1920.1080@0.0.1920.1080" timestamp="1587055683744" />
-    <state width="1864" height="281" key="GridCell.Tab.0.left" timestamp="1587055683743">
+    <state width="1864" height="280" key="GridCell.Tab.0.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1588867559929" />
+    <state width="1864" height="280" key="GridCell.Tab.0.center" timestamp="1588867559928">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1864" height="281" key="GridCell.Tab.0.left/0.0.1920.1080@0.0.1920.1080" timestamp="1587055683743" />
-    <state width="1864" height="281" key="GridCell.Tab.0.right" timestamp="1587055683744">
+    <state width="1864" height="280" key="GridCell.Tab.0.center/0.0.1920.1080@0.0.1920.1080" timestamp="1588867559928" />
+    <state width="1864" height="280" key="GridCell.Tab.0.left" timestamp="1588867559928">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1864" height="281" key="GridCell.Tab.0.right/0.0.1920.1080@0.0.1920.1080" timestamp="1587055683744" />
-    <state x="1080" y="134" width="701" height="740" key="new project wizard" timestamp="1586944218163">
+    <state width="1864" height="280" key="GridCell.Tab.0.left/0.0.1920.1080@0.0.1920.1080" timestamp="1588867559928" />
+    <state width="1864" height="280" key="GridCell.Tab.0.right" timestamp="1588867559929">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state x="1080" y="134" width="701" height="740" key="new project wizard/0.0.1920.1080@0.0.1920.1080" timestamp="1586944218163" />
+    <state width="1864" height="280" key="GridCell.Tab.0.right/0.0.1920.1080@0.0.1920.1080" timestamp="1588867559929" />
+    <state x="1078" y="118" width="701" height="740" key="new project wizard" timestamp="1587803095225">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="1078" y="118" width="701" height="740" key="new project wizard/0.0.1920.1080@0.0.1920.1080" timestamp="1587803095225" />
   </component>
 </project>

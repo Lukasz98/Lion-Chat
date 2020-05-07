@@ -2,15 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fd09e8de-0a6c-431c-b9b1-0c0c4466ecc4" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Lion-Chat/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Lion-Chat-Server/MySQL.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Lion-Chat-Server/MySQL.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ClientThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ClientThread.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/MySQL.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MySQL.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Lion-Chat/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Lion-Chat/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lion-Chat/out/production/Lion-Chat/Connection.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Lion-Chat/out/production/Lion-Chat/Connection.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Lion-Chat/out/production/Lion-Chat/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Lion-Chat/out/production/Lion-Chat/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Lion-Chat/src/LoginPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Lion-Chat/src/LoginPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lion-Chat/src/Connection.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Lion-Chat/src/Connection.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Lion-Chat/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Lion-Chat/src/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -32,7 +31,6 @@
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showExcludedFiles" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
@@ -83,22 +81,22 @@
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="1089" y="246" width="595" height="498" key="FileChooserDialogImpl/0.0.1920.1080@0.0.1920.1080" timestamp="1587049396258" />
-    <state width="1864" height="277" key="GridCell.Tab.0.bottom" timestamp="1587055680819">
+    <state width="1864" height="276" key="GridCell.Tab.0.bottom" timestamp="1588866225928">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1864" height="277" key="GridCell.Tab.0.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1587055680819" />
-    <state width="1864" height="277" key="GridCell.Tab.0.center" timestamp="1587055680818">
+    <state width="1864" height="276" key="GridCell.Tab.0.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1588866225928" />
+    <state width="1864" height="276" key="GridCell.Tab.0.center" timestamp="1588866225927">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1864" height="277" key="GridCell.Tab.0.center/0.0.1920.1080@0.0.1920.1080" timestamp="1587055680818" />
-    <state width="1864" height="277" key="GridCell.Tab.0.left" timestamp="1587055680818">
+    <state width="1864" height="276" key="GridCell.Tab.0.center/0.0.1920.1080@0.0.1920.1080" timestamp="1588866225927" />
+    <state width="1864" height="276" key="GridCell.Tab.0.left" timestamp="1588866225927">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1864" height="277" key="GridCell.Tab.0.left/0.0.1920.1080@0.0.1920.1080" timestamp="1587055680818" />
-    <state width="1864" height="277" key="GridCell.Tab.0.right" timestamp="1587055680818">
+    <state width="1864" height="276" key="GridCell.Tab.0.left/0.0.1920.1080@0.0.1920.1080" timestamp="1588866225927" />
+    <state width="1864" height="276" key="GridCell.Tab.0.right" timestamp="1588866225928">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1864" height="277" key="GridCell.Tab.0.right/0.0.1920.1080@0.0.1920.1080" timestamp="1587055680818" />
+    <state width="1864" height="276" key="GridCell.Tab.0.right/0.0.1920.1080@0.0.1920.1080" timestamp="1588866225928" />
     <state width="1864" height="352" key="GridCell.Tab.1.bottom" timestamp="1586957963939">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>

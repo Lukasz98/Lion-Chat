@@ -28,7 +28,7 @@ public class MySQL {
                 );
                 while (rs.next()) {
                     System.out.println(rs.getString("login"));
-                    return rs.getInt("passwd");
+                    return rs.getInt("id");
                 }
             } catch (SQLException e) {
                 e.printStackTrace();
