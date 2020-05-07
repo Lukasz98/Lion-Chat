@@ -13,6 +13,7 @@ public class Connection extends Thread {
     private BufferedReader in;
 
     private BRunnable afterLogin;
+    private BRunnable usersInfoUpdate;
 
     public Connection() throws IOException {
         String host = "localhost";
@@ -40,7 +41,10 @@ public class Connection extends Thread {
                     System.out.println("Moje id = " + words[1]);
                     afterLogin.setArg(words[2]);
                     SwingUtilities.invokeAndWait(afterLogin);
-                    //afterLogin.run();
+                }
+                else if (words.length > 2 && words[0].equals("usersInfo")) {
+                    usersInfoUpdate.setArgs(words);
+                    SwingUtilities.invokeAndWait(usersInfoUpdate);
                 }
             }
 
@@ -57,4 +61,5 @@ public class Connection extends Thread {
     public void setAfterLogin(BRunnable r) {
         afterLogin = r;
     }
+    public void setUsersInfoUpdate(BRunnable r) { usersInfoUpdate = r; }
 }

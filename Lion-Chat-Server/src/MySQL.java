@@ -37,6 +37,22 @@ public class MySQL {
         return -1;
     }
 
+    public synchronized static ResultSet getUsersInfo() {
+        synchronized (mysql) {
+            try {
+                Statement stmt = mysql.conn.createStatement();
+                ResultSet rs = stmt.executeQuery(
+                        "SELECT id, login FROM userrs;"
+                );
+                return rs;
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return null;
+    }
+
+
     public static void LoadPrintTest() {
         try {
             Statement stmt = mysql.conn.createStatement();

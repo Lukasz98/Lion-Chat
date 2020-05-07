@@ -3,6 +3,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class ClientThread extends Thread {
 
@@ -50,6 +52,24 @@ public class ClientThread extends Thread {
             System.out.println("Logged");
             String msg = "logged " + Integer.toString(id) + " " + words[1];
             send(msg);
+            sendUsersInfo();
+        }
+    }
+
+    private void sendUsersInfo() {
+        ResultSet rs = MySQL.getUsersInfo();
+        try {
+            String msg = "usersInfo ";
+            while (rs.next()) {
+                int uid = rs.getInt("id");
+                String uname = rs.getString("login");
+                msg += Integer.toString(uid) + " " + uname + " ";
+            }
+            if (msg.length() > 10) {
+                send(msg);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 

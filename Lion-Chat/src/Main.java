@@ -34,6 +34,7 @@ public class Main {
 
         BRunnable afterLogin = new BRunnable() {
             private String name;
+            @Override
             public void setArg(String arg) {
                 name = arg;
             }
@@ -48,7 +49,19 @@ public class Main {
             }
         };
 
+        BRunnable usersInfoUpdate = new BRunnable() {
+            private String[] args;
+            @Override
+            public void setArgs(String [] args) { this.args = args; }
+            @Override
+            public void run() {
+                usersPanel.setUsersInfo(args);
+                frame.setVisible(true);
+            }
+        };
+
         connection.setAfterLogin(afterLogin);
+        connection.setUsersInfoUpdate(usersInfoUpdate );
         connection.start();
 
 
