@@ -1,5 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
 
 public class UsersPanel extends JPanel {
 
@@ -9,8 +10,10 @@ public class UsersPanel extends JPanel {
             ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
     private JPanel usersPanel = new JPanel();
     private JLabel title = new JLabel("Users:");
+    private ActionListener clickOnUser;
 
-    public UsersPanel() {
+    public UsersPanel(ActionListener clickOnUser) {
+        this.clickOnUser = clickOnUser;
         setBackground(Color.red);
         nameLabel = new JLabel("?");
         add(nameLabel);
@@ -38,7 +41,9 @@ public class UsersPanel extends JPanel {
         usersPanel.add(title);
         for (int i = 1; i + 1 < info.length && i < info.length; i += 2) {
             JButton b = new JButton(info[i + 1] + " id=" + info[i]);
+            b.setName(info[i]); // name = id
             b.setPreferredSize(new Dimension(1000 / 4, 20));
+            b.addActionListener(clickOnUser);
             usersPanel.add(b);
         }
         usersPanel.repaint();

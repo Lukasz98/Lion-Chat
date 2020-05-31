@@ -14,6 +14,7 @@ public class Connection extends Thread {
 
     private BRunnable afterLogin;
     private BRunnable usersInfoUpdate;
+    private BRunnable newPrivMessg;
 
     public Connection() throws IOException {
         String host = "localhost";
@@ -46,6 +47,10 @@ public class Connection extends Thread {
                     usersInfoUpdate.setArgs(words);
                     SwingUtilities.invokeAndWait(usersInfoUpdate);
                 }
+                else if (words.length > 3 && words[0].equals("priv_msg")) {
+                    newPrivMessg.setArgs(words);
+                    SwingUtilities.invokeAndWait(newPrivMessg);
+                }
             }
 
 
@@ -62,4 +67,5 @@ public class Connection extends Thread {
         afterLogin = r;
     }
     public void setUsersInfoUpdate(BRunnable r) { usersInfoUpdate = r; }
+    public void setNewPrivMessg(BRunnable r) { newPrivMessg = r; }
 }

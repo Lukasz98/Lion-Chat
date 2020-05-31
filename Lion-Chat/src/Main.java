@@ -1,5 +1,4 @@
 import javax.swing.*;
-import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -24,13 +23,25 @@ public class Main {
         LoginPanel loginPanel = new LoginPanel(connection);
 
         JPanel mainPanel = new JPanel(new BorderLayout(0,0));
-        UsersPanel usersPanel = new UsersPanel();
-        MessagePanel messagePanel = new MessagePanel();
+        MidPanel midPanel = new MidPanel(connection);
         GroupChatsPanel groupChatsPanel = new GroupChatsPanel();
 
+        ActionListener clickOnUserName = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                JButton button = (JButton)actionEvent.getSource();
+                midPanel.openMessages(Integer.valueOf(button.getName()));
+                frame.getContentPane().repaint();
+                frame.setVisible(true);
+            }
+        };
+
+        UsersPanel usersPanel = new UsersPanel(clickOnUserName);
+
         mainPanel.add(usersPanel, BorderLayout.LINE_START);
-        mainPanel.add(messagePanel, BorderLayout.CENTER);
+        mainPanel.add(midPanel, BorderLayout.CENTER);
         mainPanel.add(groupChatsPanel, BorderLayout.LINE_END);
+
 
         BRunnable afterLogin = new BRunnable() {
             private String name;
@@ -60,8 +71,24 @@ public class Main {
             }
         };
 
+        BRunnable newPrivMsg = new BRunnable() {
+            private String[] args;
+            @Override
+            public void setArgs(String [] args) { this.args = args; }
+            @Override
+            public void run() {
+
+                int sender = Integer.valueOf(args[1]);
+                int receiver = Integer.valueOf(args[2]);
+                String text = args[3];
+                midPanel.addMsg(sender, receiver, text);
+                frame.setVisible(true);
+            }
+        };
+
         connection.setAfterLogin(afterLogin);
         connection.setUsersInfoUpdate(usersInfoUpdate );
+        connection.setNewPrivMessg(newPrivMsg);
         connection.start();
 
 

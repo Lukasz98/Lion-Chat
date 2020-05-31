@@ -73,6 +73,42 @@ public class ClientThread extends Thread {
         }
     }
 
+    private void sendOldPrivMsg(int auth2) {
+        ResultSet rs = MySQL.getUsersInfo();
+        try {
+            while (rs.next()) {
+                String msg = "priv_msg " + auth2;
+                String text = rs.getString("text");
+                msg += text;
+                send(msg);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void newPrivMsg(int receiverId, String text) {
+        try {
+            MySQL.sendNewPrivMsg(id, receiverId, text);
+            if (OnlineClientList.isClientOnline(receiverId))
+                OnlineClientList.sendNewMessage("priv_msg " + id + " " + receiverId + " " + text, receiverId);
+            if (receiverId != id)
+                OnlineClientList.sendNewMessage("priv_msg " + id + " " + receiverId + " " + text, id);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        /*
+        try {
+            while (rs.next()) {
+                String msg = "priv_msg " + auth2;
+                String text = rs.getString("text");
+                msg += text;
+                send(msg);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }*/
+    }
 
     @Override
     public void run() {
@@ -88,18 +124,32 @@ public class ClientThread extends Thread {
                     if (words.length > 1 && words[0].equals("login")) {
                         tryToLogin(words);
                     }
+                    else if (words.length >= 2 && words[0].equals("get_old_priv_msg")) {
+                        int auth2 = Integer.valueOf(words[1]);
+                        sendOldPrivMsg(auth2);
+                    }
+                    else if (words.length >= 3 && words[0].equals("send_priv_msg")) {
+                        int auth2 = Integer.valueOf(words[1]);
+                        newPrivMsg(auth2, words[2]);
+                    }
+
                 }
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
-        out.close();
-        try {
-            in.close();
-        } catch (IOException e) {
-            e.printStackTrace();
+        finally {
+            out.close();
+            try {
+                in.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            finally {
+                closeSocket();
+                OnlineClientList.removeClient(id);
+            }
         }
-        closeSocket();
     }
 
     private void closeSocket() {
@@ -108,5 +158,9 @@ public class ClientThread extends Thread {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public int getClientId() {
+        return id;
     }
 }

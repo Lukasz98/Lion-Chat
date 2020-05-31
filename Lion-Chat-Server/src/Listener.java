@@ -17,6 +17,7 @@ public class Listener extends Thread {
                 Socket clientSocket = serverSocket.accept();
                 ClientThread clientThread = new ClientThread(clientSocket);
                 clientThread.start();
+                OnlineClientList.addClient(clientThread);
                 System.out.println("nowy klient");
 
             } catch (IOException e) {

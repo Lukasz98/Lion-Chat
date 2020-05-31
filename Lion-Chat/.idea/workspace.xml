@@ -2,18 +2,25 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="577d9e09-a645-45e2-890d-9a3c7fd05001" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../Lion-Chat-Server/src/OnlineClientList.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/MidPanel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Lion-Chat-Server/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Lion-Chat-Server/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Lion-Chat-Server/out/production/Lion-Chat-Server/ClientThread.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Lion-Chat-Server/out/production/Lion-Chat-Server/ClientThread.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lion-Chat-Server/out/production/Lion-Chat-Server/Listener.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Lion-Chat-Server/out/production/Lion-Chat-Server/Listener.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Lion-Chat-Server/out/production/Lion-Chat-Server/MySQL.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Lion-Chat-Server/out/production/Lion-Chat-Server/MySQL.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Lion-Chat-Server/src/ClientThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Lion-Chat-Server/src/ClientThread.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lion-Chat-Server/src/Listener.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Lion-Chat-Server/src/Listener.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Lion-Chat-Server/src/MySQL.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Lion-Chat-Server/src/MySQL.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Lion-Chat/Connection.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Lion-Chat/Connection.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Lion-Chat/Main$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Lion-Chat/Main$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Lion-Chat/Main$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Lion-Chat/Main$2.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Lion-Chat/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Lion-Chat/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Lion-Chat/MessagePanel.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Lion-Chat/UsersPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Lion-Chat/UsersPanel.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Connection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Connection.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MessagePanel.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/UsersPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UsersPanel.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -79,42 +86,46 @@
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="1106" y="281" width="529" height="414" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1586944192672" />
+    <state x="170" y="-16" width="605" height="1068" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1590920716310">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="170" y="-16" width="605" height="1068" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1590920716310" />
     <state x="741" y="288" width="428" height="472" key="FileChooserDialogImpl" timestamp="1587803070394">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="741" y="288" width="428" height="472" key="FileChooserDialogImpl/0.0.1920.1080@0.0.1920.1080" timestamp="1587803070394" />
-    <state width="1864" height="280" key="GridCell.Tab.0.bottom" timestamp="1588870029288">
+    <state width="1864" height="280" key="GridCell.Tab.0.bottom" timestamp="1590941321890">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1864" height="280" key="GridCell.Tab.0.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1588870029288" />
-    <state width="1864" height="280" key="GridCell.Tab.0.center" timestamp="1588870029287">
+    <state width="1864" height="280" key="GridCell.Tab.0.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1590941321890" />
+    <state width="1864" height="280" key="GridCell.Tab.0.center" timestamp="1590941321890">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1864" height="280" key="GridCell.Tab.0.center/0.0.1920.1080@0.0.1920.1080" timestamp="1588870029287" />
-    <state width="1864" height="280" key="GridCell.Tab.0.left" timestamp="1588870029287">
+    <state width="1864" height="280" key="GridCell.Tab.0.center/0.0.1920.1080@0.0.1920.1080" timestamp="1590941321890" />
+    <state width="1864" height="280" key="GridCell.Tab.0.left" timestamp="1590941321890">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1864" height="280" key="GridCell.Tab.0.left/0.0.1920.1080@0.0.1920.1080" timestamp="1588870029287" />
-    <state width="1864" height="280" key="GridCell.Tab.0.right" timestamp="1588870029287">
+    <state width="1864" height="280" key="GridCell.Tab.0.left/0.0.1920.1080@0.0.1920.1080" timestamp="1590941321890" />
+    <state width="1864" height="280" key="GridCell.Tab.0.right" timestamp="1590941321890">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1864" height="280" key="GridCell.Tab.0.right/0.0.1920.1080@0.0.1920.1080" timestamp="1588870029287" />
-    <state width="1864" height="352" key="GridCell.Tab.1.bottom" timestamp="1588869271062">
+    <state width="1864" height="280" key="GridCell.Tab.0.right/0.0.1920.1080@0.0.1920.1080" timestamp="1590941321890" />
+    <state width="1864" height="352" key="GridCell.Tab.1.bottom" timestamp="1588872359832">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1864" height="352" key="GridCell.Tab.1.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1588869271062" />
-    <state width="1864" height="352" key="GridCell.Tab.1.center" timestamp="1588869271062">
+    <state width="1864" height="352" key="GridCell.Tab.1.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1588872359832" />
+    <state width="1864" height="352" key="GridCell.Tab.1.center" timestamp="1588872359832">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1864" height="352" key="GridCell.Tab.1.center/0.0.1920.1080@0.0.1920.1080" timestamp="1588869271062" />
-    <state width="1864" height="352" key="GridCell.Tab.1.left" timestamp="1588869271062">
+    <state width="1864" height="352" key="GridCell.Tab.1.center/0.0.1920.1080@0.0.1920.1080" timestamp="1588872359832" />
+    <state width="1864" height="352" key="GridCell.Tab.1.left" timestamp="1588872359832">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1864" height="352" key="GridCell.Tab.1.left/0.0.1920.1080@0.0.1920.1080" timestamp="1588869271062" />
-    <state width="1864" height="352" key="GridCell.Tab.1.right" timestamp="1588869271062">
+    <state width="1864" height="352" key="GridCell.Tab.1.left/0.0.1920.1080@0.0.1920.1080" timestamp="1588872359832" />
+    <state width="1864" height="352" key="GridCell.Tab.1.right" timestamp="1588872359832">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1864" height="352" key="GridCell.Tab.1.right/0.0.1920.1080@0.0.1920.1080" timestamp="1588869271062" />
+    <state width="1864" height="352" key="GridCell.Tab.1.right/0.0.1920.1080@0.0.1920.1080" timestamp="1588872359832" />
     <state x="1078" y="118" width="701" height="740" key="new project wizard" timestamp="1587803095225">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
