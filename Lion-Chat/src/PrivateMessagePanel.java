@@ -5,13 +5,16 @@ import java.awt.event.KeyListener;
 
 public class PrivateMessagePanel extends JPanel {
 
+    private Connection connection;
     private MessagesPanel messagesPanel = new MessagesPanel();
     private JPanel writerPanel = new JPanel();
     private JTextField textField = new JTextField();
     private int otherUserId;
+    private boolean unseenMsgs = false;
 
     public PrivateMessagePanel(Connection connection, int receiverId) {
         otherUserId = receiverId;
+        this.connection = connection;
         setBackground(Color.GREEN);
         setPreferredSize(new Dimension(1000 / 2 - 20, 700 - 10));
 
@@ -53,4 +56,22 @@ public class PrivateMessagePanel extends JPanel {
     }
 
     public int getOtherUserId() { return otherUserId; }
+    public boolean isUnseenMsgs() {
+        return unseenMsgs;
+    }
+
+    public void setUnseenMsgs(boolean unseenMsgs) {
+        this.unseenMsgs = unseenMsgs;
+    }
+
+    @Override
+    public void setVisible(boolean v) {
+        super.setVisible(v);
+        if (v && unseenMsgs) {
+            connection.send("saw_priv_msg " + otherUserId);
+            unseenMsgs = false;
+        }
+    }
+
+
 }

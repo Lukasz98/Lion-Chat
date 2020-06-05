@@ -55,6 +55,7 @@ public class ClientThread extends Thread {
             String msg = "logged " + Integer.toString(id) + " " + words[1];
             send(msg);
             sendUsersInfo();
+            sendUnseenPrivMsgsIds();
         }
     }
 
@@ -74,7 +75,7 @@ public class ClientThread extends Thread {
             e.printStackTrace();
         }
     }
-
+/*
     private void sendOldPrivMsg(int auth2) {
         ResultSet rs = MySQL.getUsersInfo();
         try {
@@ -88,6 +89,22 @@ public class ClientThread extends Thread {
             e.printStackTrace();
         }
     }
+*/
+    private void sendUnseenPrivMsgsIds() {
+        ResultSet rs = MySQL.getUnseenPrivMsgsIds(id);
+        try {
+            String m = "";
+            while (rs.next()) {
+                m += rs.getString("id") + " ";
+            }
+            if (m.length() > 0) {
+                send("unseenPrivMsgsIds " + m);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
 
     private void newPrivMsg(int receiverId, String text) {
         try {
@@ -96,6 +113,7 @@ public class ClientThread extends Thread {
                 OnlineClientList.sendNewMessage("priv_msg " + id + " " + receiverId + " " + text, receiverId);
             if (receiverId != id)
                 OnlineClientList.sendNewMessage("priv_msg " + id + " " + receiverId + " " + text, id);
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -142,10 +160,10 @@ public class ClientThread extends Thread {
                     if (words.length > 1 && words[0].equals("login")) {
                         tryToLogin(words);
                     }
-                    else if (words.length >= 2 && words[0].equals("get_old_priv_msg")) {
-                        int auth2 = Integer.valueOf(words[1]);
-                        sendOldPrivMsg(auth2);
-                    }
+                    //else if (words.length >= 2 && words[0].equals("get_old_priv_msg")) {
+                    //    int auth2 = Integer.valueOf(words[1]);
+                    //    sendOldPrivMsg(auth2);
+                    //}
                     else if (words.length >= 3 && words[0].equals("send_priv_msg")) {
                         int auth2 = Integer.valueOf(words[1]);
                         newPrivMsg(auth2, words[2]);
@@ -153,6 +171,10 @@ public class ClientThread extends Thread {
                     else if (words.length == 2 && words[0].equals("get_all_priv_msgs")) {
                         int auth2 = Integer.valueOf(words[1]);
                         sendAllPrivMsgs(auth2);
+                    }
+                    else if (words.length == 2 && words[0].equals("saw_priv_msg")) {
+                        int auth2 = Integer.valueOf(words[1]);
+                        MySQL.markPrivMsgViewed(id, auth2);
                     }
 
                 }

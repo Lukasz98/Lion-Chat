@@ -52,7 +52,7 @@ public class MySQL {
         return null;
     }
 
-    public synchronized static ResultSet getPrivMsgs    (int auth1, int auth2) {
+    public synchronized static ResultSet getPrivMsgs(int auth1, int auth2) {
         synchronized (mysql) {
             try {
                 Statement stmt = mysql.conn.createStatement();
@@ -69,11 +69,49 @@ public class MySQL {
         return null;
     }
 
+    public synchronized static void markPrivMsgViewed(int id1, int id2) {
+        synchronized (mysql) {
+            try {
+                Statement stmt = mysql.conn.createStatement();
+                ResultSet rs = stmt.executeQuery(
+                        "UPDATE priv_msg SET viewed=true WHERE" +
+                                " (priv_msg.receiver_id=" + id1 + "" + " AND priv_msg.sender_id=" + id2 + ") "
+//                                " (priv_msg.receiver_id=" + id1 + "" + " AND priv_msg.sender_id=" + id1 + ");"
+                );
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public synchronized static ResultSet getUnseenPrivMsgsIds(int id) {
+        synchronized (mysql) {
+            try {
+                Statement stmt = mysql.conn.createStatement();
+                ResultSet rs = stmt.executeQuery(
+                        "SELECT priv_msg.sender_id as id FROM priv_msg WHERE" +
+                                " priv_msg.receiver_id=" + id + "" + " AND priv_msg.viewed=FALSE;"
+                );
+                /*"SELECT priv_msg.sender_id as id FROM priv_msg WHERE" +
+                                "(priv_msg.sender_id=" + id + ")" + " UNION " +
+                            "SELECT priv_msg.receiver_id as id FROM priv_msg WHERE" +
+                                "(priv_msg.receiver_id=" + id + ")"
+
+                * */
+
+                return rs;
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return null;
+    }
+
     public synchronized static void sendNewPrivMsg(int authorId, int receiverId, String text) throws SQLException{
         synchronized (mysql) {
                 Statement stmt = mysql.conn.createStatement();
                 ResultSet rs = stmt.executeQuery(
-                        "INSERT INTO priv_msg (sender_id, receiver_id, text) VALUES(" + authorId + ", " + receiverId + ", '" + text + "');"
+                        "INSERT INTO priv_msg (sender_id, receiver_id, text, viewed) VALUES(" + authorId + ", " + receiverId + ", '" + text + "', false);"
                 );
         }
     }

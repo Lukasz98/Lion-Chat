@@ -23,8 +23,10 @@ public class Main {
         LoginPanel loginPanel = new LoginPanel(connection);
 
         JPanel mainPanel = new JPanel(new BorderLayout(0,0));
-        MidPanel midPanel = new MidPanel(connection);
+        UsersPanel usersPanel = new UsersPanel();
+        MidPanel midPanel = new MidPanel(connection, usersPanel);
         GroupChatsPanel groupChatsPanel = new GroupChatsPanel();
+
 
         ActionListener clickOnUserName = new ActionListener() {
             @Override
@@ -36,7 +38,7 @@ public class Main {
             }
         };
 
-        UsersPanel usersPanel = new UsersPanel(clickOnUserName);
+        usersPanel.setClickOnUser(clickOnUserName);
 
         mainPanel.add(usersPanel, BorderLayout.LINE_START);
         mainPanel.add(midPanel, BorderLayout.CENTER);
@@ -81,7 +83,7 @@ public class Main {
                 int sender = Integer.valueOf(args[1]);
                 int receiver = Integer.valueOf(args[2]);
                 String text = args[3];
-                midPanel.addMsg(sender, receiver, text);
+                midPanel.addMsg(sender, receiver, text, true);
                 frame.setVisible(true);
             }
         };
@@ -95,17 +97,36 @@ public class Main {
 
                 int otherUserId = Integer.valueOf(args[1]);
                 for (int i = 2; i < args.length; i += 3) {
-                    midPanel.addMsg(Integer.valueOf(args[i]), Integer.valueOf(args[i + 1]), args[i + 2]);
+                    int author = Integer.valueOf(args[i]), receiver = Integer.valueOf(args[i + 1]);
+                    midPanel.addMsg(author, receiver, args[i + 2], false);
+                }
+                frame.setVisible(true);
+            }
+        };
+
+        BRunnable unseenMsgs = new BRunnable() {
+            private String[] args;
+            @Override
+            public void setArgs(String [] args) { this.args = args; }
+            @Override
+            public void run() {
+                System.out.println("tu");
+
+                for (int i = 1; i < args.length; i++) {
+                    usersPanel.lightUserButton(args[i]);
+                    midPanel.makePanelUnseen(Integer.valueOf(args[i]));
                 }
                 frame.setVisible(true);
             }
         };
 
 
+
         connection.setAfterLogin(afterLogin);
         connection.setUsersInfoUpdate(usersInfoUpdate );
         connection.setNewPrivMessg(newPrivMsg);
         connection.setPopulateWithPrivMsgs(populateWithPrivMsgs);
+        connection.setUnseenMsgs(unseenMsgs);
         connection.start();
 
 

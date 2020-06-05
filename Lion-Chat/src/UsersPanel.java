@@ -10,10 +10,14 @@ public class UsersPanel extends JPanel {
             ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
     private JPanel usersPanel = new JPanel();
     private JLabel title = new JLabel("Users:");
+
+    public void setClickOnUser(ActionListener clickOnUser) {
+        this.clickOnUser = clickOnUser;
+    }
+
     private ActionListener clickOnUser;
 
-    public UsersPanel(ActionListener clickOnUser) {
-        this.clickOnUser = clickOnUser;
+    public UsersPanel() {
         setBackground(Color.red);
         nameLabel = new JLabel("?");
         add(nameLabel);
@@ -44,8 +48,31 @@ public class UsersPanel extends JPanel {
             b.setName(info[i]); // name = id
             b.setPreferredSize(new Dimension(1000 / 4, 20));
             b.addActionListener(clickOnUser);
+            b.setBackground(Color.LIGHT_GRAY);
             usersPanel.add(b);
         }
         usersPanel.repaint();
     }
+
+    public void lightUserButton(String id) {
+        Component [] c = usersPanel.getComponents();
+        for (int i = 0 ; i < c.length; i++) {
+            if (c[i].getName() != null && c[i].getName().equals(id)) {
+                ((JButton)c[i]).setBackground(Color.red);
+                break;
+            }
+        }
+    }
+
+    public void unLightUserButton(int id) {
+        Component [] c = usersPanel.getComponents();
+        for (int i = 0 ; i < c.length; i++) {
+            System.out.println("attatatata");
+            if (c[i].getName() != null && c[i].getName().equals(String.valueOf(id))) {
+                ((JButton)c[i]).setBackground(Color.LIGHT_GRAY);
+                break;
+            }
+        }
+    }
+
 }
