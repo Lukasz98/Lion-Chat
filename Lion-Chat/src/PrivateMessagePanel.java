@@ -45,6 +45,7 @@ public class PrivateMessagePanel extends JPanel {
 //        add(scrollPane);
         add(writerPanel);
 
+        connection.send("get_all_priv_msgs " + receiverId);
     }
 
     public void addMessage(String msg, int authorId) {

@@ -32,12 +32,14 @@ public class MidPanel extends JPanel {
     }
 
     public void addMsg(int sender, int receiver, String text) {
-        int goalId = sender;
-        //if (sender != receiver)
-sender = receiver;
-        for (int i = 0; i < insidePanels.size(); i++) {
-            if (insidePanels.get(i).getOtherUserId() == sender) {
+        int panelId = sender;
+        if (sender != receiver) {
+            if (sender == connection.getUserId())
+                panelId = receiver;
 
+        }
+        for (int i = 0; i < insidePanels.size(); i++) {
+            if (insidePanels.get(i).getOtherUserId() == panelId) {
                 insidePanels.get(i).addMessage(text, sender);
                 return;
             }

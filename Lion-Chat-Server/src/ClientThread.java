@@ -1,3 +1,5 @@
+import org.mariadb.jdbc.internal.util.SqlStates;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -110,6 +112,22 @@ public class ClientThread extends Thread {
         }*/
     }
 
+    private void sendAllPrivMsgs(int auth2) {
+        ResultSet rs = MySQL.getPrivMsgs(id, auth2);
+        if (rs == null)
+            return;
+        String msg = "allPrivMsgs " + auth2;
+        try {
+            while (rs.next()) {
+                msg += " " + rs.getString("author") + " " + rs.getString("receiver") + " " + rs.getString("text");
+            }
+            send(msg);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+
     @Override
     public void run() {
         if (!set)
@@ -131,6 +149,10 @@ public class ClientThread extends Thread {
                     else if (words.length >= 3 && words[0].equals("send_priv_msg")) {
                         int auth2 = Integer.valueOf(words[1]);
                         newPrivMsg(auth2, words[2]);
+                    }
+                    else if (words.length == 2 && words[0].equals("get_all_priv_msgs")) {
+                        int auth2 = Integer.valueOf(words[1]);
+                        sendAllPrivMsgs(auth2);
                     }
 
                 }

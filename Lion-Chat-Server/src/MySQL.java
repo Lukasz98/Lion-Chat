@@ -52,14 +52,14 @@ public class MySQL {
         return null;
     }
 
-    public synchronized static ResultSet getPrivMsg(int auth1, int auth2) {
+    public synchronized static ResultSet getPrivMsgs    (int auth1, int auth2) {
         synchronized (mysql) {
             try {
                 Statement stmt = mysql.conn.createStatement();
                 ResultSet rs = stmt.executeQuery(
-                        "SELECT text FROM priv_msg LEFT JOIN userrs WHERE" +
-                                "(priv_msg.sender_id=" + auth1 + " OR priv_msg.receiver_id=" + auth1 + ") AND;" +
-                                "(priv_msg.sender_id=" + auth2 + " OR priv_msg.receiver_id=" + auth2 + ");"
+                        "SELECT priv_msg.sender_id as author, priv_msg.receiver_id as receiver, text FROM priv_msg WHERE" +
+                                "(priv_msg.sender_id=" + auth1 + " AND priv_msg.receiver_id=" + auth2 + ") OR" +
+                                "(priv_msg.sender_id=" + auth2 + " AND priv_msg.receiver_id=" + auth1 + ");"
                 );
                 return rs;
             } catch (SQLException e) {
@@ -77,7 +77,6 @@ public class MySQL {
                 );
         }
     }
-
 
     public static void LoadPrintTest() {
         try {

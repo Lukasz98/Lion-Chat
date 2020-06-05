@@ -86,9 +86,26 @@ public class Main {
             }
         };
 
+        BRunnable populateWithPrivMsgs = new BRunnable() {
+            private String[] args;
+            @Override
+            public void setArgs(String [] args) { this.args = args; }
+            @Override
+            public void run() {
+
+                int otherUserId = Integer.valueOf(args[1]);
+                for (int i = 2; i < args.length; i += 3) {
+                    midPanel.addMsg(Integer.valueOf(args[i]), Integer.valueOf(args[i + 1]), args[i + 2]);
+                }
+                frame.setVisible(true);
+            }
+        };
+
+
         connection.setAfterLogin(afterLogin);
         connection.setUsersInfoUpdate(usersInfoUpdate );
         connection.setNewPrivMessg(newPrivMsg);
+        connection.setPopulateWithPrivMsgs(populateWithPrivMsgs);
         connection.start();
 
 
