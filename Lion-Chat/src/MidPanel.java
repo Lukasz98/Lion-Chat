@@ -31,6 +31,7 @@ public class MidPanel extends JPanel {
         }
         if (!found) {
             addNewPrivateMsgPanel(receiverId);
+            insidePanels.get(insidePanels.size() - 1).setVisible(true);
         }
     }
 
@@ -44,12 +45,13 @@ public class MidPanel extends JPanel {
         for (int i = 0; i < insidePanels.size(); i++) {
             if (insidePanels.get(i).getOtherUserId() == panelId) {
                 insidePanels.get(i).addMessage(text, sender);
-                makePanelUnseen(panelId);
+                if (unseen) makePanelUnseen(panelId);
                 return;
             }
         }
         addNewPrivateMsgPanel(sender);
-        makePanelUnseen(sender);
+        if (unseen)
+            makePanelUnseen(sender);
     }
 
     public void makePanelUnseen(int id) {

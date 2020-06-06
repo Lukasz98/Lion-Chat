@@ -137,7 +137,7 @@ public class ClientThread extends Thread {
         String msg = "allPrivMsgs " + auth2;
         try {
             while (rs.next()) {
-                msg += " " + rs.getString("author") + " " + rs.getString("receiver") + " " + rs.getString("text");
+                msg += " " + rs.getString("author") + " " + rs.getString("receiver") + " " + rs.getString("text") + " " + Character.toString((char)3);
             }
             send(msg);
         } catch (SQLException e) {
@@ -166,7 +166,10 @@ public class ClientThread extends Thread {
                     //}
                     else if (words.length >= 3 && words[0].equals("send_priv_msg")) {
                         int auth2 = Integer.valueOf(words[1]);
-                        newPrivMsg(auth2, words[2]);
+                        String text = words[2];
+                        for (int i = 3; i < words.length; i++)
+                            text += " " + words[i];
+                        newPrivMsg(auth2, text);
                     }
                     else if (words.length == 2 && words[0].equals("get_all_priv_msgs")) {
                         int auth2 = Integer.valueOf(words[1]);
