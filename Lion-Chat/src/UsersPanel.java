@@ -9,7 +9,7 @@ public class UsersPanel extends JPanel {
     private JScrollPane scrollPane = new JScrollPane(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED,
             ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
     private JPanel usersPanel = new JPanel();
-    private JLabel title = new JLabel("Users:");
+    private JLabel title = new JLabel("All users:");
 
     public void setClickOnUser(ActionListener clickOnUser) {
         this.clickOnUser = clickOnUser;
@@ -18,35 +18,48 @@ public class UsersPanel extends JPanel {
     private ActionListener clickOnUser;
 
     public UsersPanel() {
+        setLayout(new BorderLayout());
+        setPreferredSize(new Dimension(1000 / 4, 500));
         setBackground(Color.red);
-        nameLabel = new JLabel("?");
-        add(nameLabel);
 
+        JPanel topPanel = new JPanel();
+        topPanel.setLayout(new BorderLayout());
+        //topPanel.setPreferredSize(new Dimension(1000 / 4, 100));
+        nameLabel = new JLabel("?");
+        topPanel.add(nameLabel, BorderLayout.NORTH);
+        //title.setPreferredSize(new Dimension(50, 50));
+        topPanel.add(title, BorderLayout.SOUTH);
+
+
+        add(topPanel, BorderLayout.PAGE_START);
 
         usersPanel.setBackground(Color.pink);
-        usersPanel.setPreferredSize(new Dimension(1000 / 4, 500));
+        usersPanel.setLayout(new BoxLayout(usersPanel, BoxLayout.Y_AXIS));
+        //usersPanel.setLayout(new GridLayout(0, 1, 0, 2));
+        scrollPane.setPreferredSize(new Dimension(1000 / 4, 100));
         scrollPane.setViewportView(usersPanel);
         add(scrollPane);
 
-        title.setPreferredSize(new Dimension(1000 / 4, 50));
-        usersPanel.add(title);
+        //title.setPreferredSize(new Dimension(1000 / 4, 50));
+        //usersPanel.add(title);
 
-        setPreferredSize(new Dimension(1000 / 4, 700));
     }
 
     public void setUserName(String s) {
         userName = s;
-        nameLabel.setText(s);
+        nameLabel.setText("Nick: " + s);
         nameLabel.repaint();
     }
 
     public void setUsersInfo(String [] info) {
-        usersPanel.removeAll();
-        usersPanel.add(title);
+        //usersPanel.removeAll();
+
         for (int i = 1; i + 1 < info.length && i < info.length; i += 2) {
             JButton b = new JButton(info[i + 1] + " id=" + info[i]);
             b.setName(info[i]); // name = id
-            b.setPreferredSize(new Dimension(1000 / 4, 20));
+            b.setMinimumSize(new Dimension(1000 / 4, 40));
+            b.setPreferredSize(new Dimension(1000 / 4, 40));
+            b.setMaximumSize(new Dimension(1000 / 4, 40));
             b.addActionListener(clickOnUser);
             b.setBackground(Color.LIGHT_GRAY);
             usersPanel.add(b);

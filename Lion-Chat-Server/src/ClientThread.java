@@ -109,11 +109,13 @@ public class ClientThread extends Thread {
     private void newPrivMsg(int receiverId, String text) {
         try {
             MySQL.sendNewPrivMsg(id, receiverId, text);
-            if (OnlineClientList.isClientOnline(receiverId))
+            System.out.println("nowa_prywatna wiadomosc");
+            if (OnlineClientList.isClientOnline(receiverId)) {
                 OnlineClientList.sendNewMessage("priv_msg " + id + " " + receiverId + " " + text, receiverId);
-            if (receiverId != id)
+            }
+            if (receiverId != id) {
                 OnlineClientList.sendNewMessage("priv_msg " + id + " " + receiverId + " " + text, id);
-
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
