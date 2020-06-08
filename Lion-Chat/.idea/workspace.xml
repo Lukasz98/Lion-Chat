@@ -5,12 +5,12 @@
       <change beforePath="$PROJECT_DIR$/../Lion-Chat-Server/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Lion-Chat-Server/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Lion-Chat-Server/src/ClientThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Lion-Chat-Server/src/ClientThread.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Lion-Chat-Server/src/MySQL.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Lion-Chat-Server/src/MySQL.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Lion-Chat-Server/src/OnlineClientList.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Lion-Chat-Server/src/OnlineClientList.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Connection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Connection.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GroupChatsPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GroupChatsPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GroupMessagePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GroupMessagePanel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/UsersPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UsersPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MidPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MidPanel.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,10 +67,10 @@
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="832" y="152" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1591535835423" />
-    <state x="754" y="144" width="378" height="567" key="#com.intellij.ide.util.MemberChooser" timestamp="1591382915208">
+    <state x="750" y="112" width="378" height="567" key="#com.intellij.ide.util.MemberChooser" timestamp="1591633560482">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state x="754" y="144" width="378" height="567" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1080@0.0.1920.1080" timestamp="1591382915208" />
+    <state x="750" y="112" width="378" height="567" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1080@0.0.1920.1080" timestamp="1591633560482" />
     <state x="1106" y="281" width="529" height="414" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1586944192672">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
@@ -83,22 +83,22 @@
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="741" y="288" width="428" height="472" key="FileChooserDialogImpl/0.0.1920.1080@0.0.1920.1080" timestamp="1587803070394" />
-    <state width="1864" height="279" key="GridCell.Tab.0.bottom" timestamp="1591629797351">
+    <state width="1864" height="279" key="GridCell.Tab.0.bottom" timestamp="1591633797442">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1864" height="279" key="GridCell.Tab.0.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1591629797351" />
-    <state width="1864" height="279" key="GridCell.Tab.0.center" timestamp="1591629797349">
+    <state width="1864" height="279" key="GridCell.Tab.0.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1591633797442" />
+    <state width="1864" height="279" key="GridCell.Tab.0.center" timestamp="1591633797442">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1864" height="279" key="GridCell.Tab.0.center/0.0.1920.1080@0.0.1920.1080" timestamp="1591629797349" />
-    <state width="1864" height="279" key="GridCell.Tab.0.left" timestamp="1591629797349">
+    <state width="1864" height="279" key="GridCell.Tab.0.center/0.0.1920.1080@0.0.1920.1080" timestamp="1591633797442" />
+    <state width="1864" height="279" key="GridCell.Tab.0.left" timestamp="1591633797442">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1864" height="279" key="GridCell.Tab.0.left/0.0.1920.1080@0.0.1920.1080" timestamp="1591629797349" />
-    <state width="1864" height="279" key="GridCell.Tab.0.right" timestamp="1591629797349">
+    <state width="1864" height="279" key="GridCell.Tab.0.left/0.0.1920.1080@0.0.1920.1080" timestamp="1591633797442" />
+    <state width="1864" height="279" key="GridCell.Tab.0.right" timestamp="1591633797442">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1864" height="279" key="GridCell.Tab.0.right/0.0.1920.1080@0.0.1920.1080" timestamp="1591629797349" />
+    <state width="1864" height="279" key="GridCell.Tab.0.right/0.0.1920.1080@0.0.1920.1080" timestamp="1591633797442" />
     <state width="1864" height="352" key="GridCell.Tab.1.bottom" timestamp="1591371985676">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
@@ -119,6 +119,10 @@
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="1078" y="118" width="701" height="740" key="new project wizard/0.0.1920.1080@0.0.1920.1080" timestamp="1587803095225" />
+    <state x="622" y="253" key="run.anything.popup" timestamp="1591633629584">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="622" y="253" key="run.anything.popup/0.0.1920.1080@0.0.1920.1080" timestamp="1591633629584" />
     <state x="623" y="250" width="672" height="678" key="search.everywhere.popup" timestamp="1591365408267">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>

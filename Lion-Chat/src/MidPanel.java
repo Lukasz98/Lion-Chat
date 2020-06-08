@@ -5,8 +5,12 @@ import java.util.ArrayList;
 public class MidPanel extends JPanel {
 
     private ArrayList<PrivateMessagePanel> insidePanels = new ArrayList<>();
+    private ArrayList<GroupMessagePanel> groupMessagePanels = new ArrayList<>();
     private Connection connection;
     private UsersPanel usersPanel;
+    private int myId;
+
+    public void setMyId(int s) { myId = s; }
 
     public MidPanel(Connection connection, UsersPanel usersPanel) {
         this.usersPanel = usersPanel;
@@ -33,6 +37,32 @@ public class MidPanel extends JPanel {
             addNewPrivateMsgPanel(receiverId);
             insidePanels.get(insidePanels.size() - 1).setVisible(true);
         }
+        for (int i = 0; i < groupMessagePanels.size(); i++) {
+            groupMessagePanels.get(i).setVisible(false);
+        }
+    }
+
+    public void openGroupMessages(int groupId) {
+        boolean found = false;
+        for (int i = 0; i < groupMessagePanels.size(); i++) {
+            if (groupMessagePanels.get(i).getGroupId() == groupId) {
+                if (groupMessagePanels.get(i).isUnseenMsgs()) {
+                    //usersPanel.unLightUserButton(groupMessagePanels.get(i).getOtherUserId());
+                }
+                groupMessagePanels.get(i).setVisible(true);
+                found = true;
+            }
+            else {
+                groupMessagePanels.get(i).setVisible(false);
+            }
+        }
+        if (!found) {
+            addNewGroupMsgPanel(groupId);
+            groupMessagePanels.get(groupMessagePanels.size() - 1).setVisible(true);
+        }
+        for (int i = 0; i < insidePanels.size(); i++) {
+            insidePanels.get(i).setVisible(false);
+        }
     }
 
     public void addMsg(int sender, int receiver, String text, boolean unseen) {
@@ -52,6 +82,19 @@ public class MidPanel extends JPanel {
         addNewPrivateMsgPanel(sender);
         if (unseen)
             makePanelUnseen(sender);
+    }
+
+    public void addGroupMsg(int sender, int groupId, String text, boolean unseen) {
+        for (int i = 0; i < groupMessagePanels.size(); i++) {
+            if (groupMessagePanels.get(i).getGroupId() == groupId) {
+                groupMessagePanels.get(i).addMessage(text, sender);
+                //if (unseen) makePanelUnseen(panelId);
+                return;
+            }
+        }
+        addNewGroupMsgPanel(sender);
+        //if (unseen)
+        //    makePanelUnseen(sender);
     }
 
     public void makePanelUnseen(int id) {
@@ -75,5 +118,12 @@ public class MidPanel extends JPanel {
         add(p);
         p.setVisible(false);
         insidePanels.add(p);
+    }
+
+    private void addNewGroupMsgPanel(int id) {
+        GroupMessagePanel p = new GroupMessagePanel(connection, id, myId);
+        add(p);
+        p.setVisible(false);
+        groupMessagePanels.add(p);
     }
 }

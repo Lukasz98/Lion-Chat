@@ -121,17 +121,6 @@ public class ClientThread extends Thread {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        /*
-        try {
-            while (rs.next()) {
-                String msg = "priv_msg " + auth2;
-                String text = rs.getString("text");
-                msg += text;
-                send(msg);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }*/
     }
 
     private void sendAllPrivMsgs(int auth2) {
@@ -191,6 +180,36 @@ public class ClientThread extends Thread {
         }
     }
 
+    private void sendAllGrpMsgs(int gid) {
+        try {
+            ResultSet rs = MySQL.getGrpMsgs(gid);
+            String msg = "all_grp_msgs " + gid;
+            while (rs.next()) {
+                msg += " " + rs.getInt("author_id") + " " + rs.getString("text") + " " + Character.toString((char)3);
+            }
+            send(msg);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void newGroupMsg(int groupId, String text) {
+        try {
+            MySQL.sendGroupMsg(id, groupId, text);
+            System.out.println("nowa grupowa wiadomosc");
+            ResultSet rs = MySQL.getGroupMembers(groupId);
+            while (rs.next()) {
+                int receiverId = rs.getInt("member_id");
+                if (OnlineClientList.isClientOnline(receiverId)) {
+                    OnlineClientList.sendNewMessage("group_msg " + groupId + " " + id + " " + text, receiverId);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     @Override
     public void run() {
         if (!set)
@@ -226,6 +245,17 @@ public class ClientThread extends Thread {
                     }
                     else if (words.length >= 2 && words[0].equals("new_grp_chat")) {
                         newGroupChat(words);
+                    }
+                    else if (words.length >= 2 && words[0].equals("get_all_grp_msgs")) {
+                        int gid = Integer.valueOf(words[1]);
+                        sendAllGrpMsgs(gid);
+                    }
+                    else if (words.length >= 2 && words[0].equals("send_group_msg")) {
+                        int groupId = Integer.valueOf(words[1]);
+                        String text = words[2];
+                        for (int i = 3; i < words.length; i++)
+                            text += " " + words[i];
+                        newGroupMsg(groupId, text);
                     }
 
                 }

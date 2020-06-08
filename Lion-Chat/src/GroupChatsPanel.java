@@ -13,6 +13,7 @@ public class GroupChatsPanel extends JPanel {
     private JLabel title = new JLabel("Groups:");
     private JButton newGroupButton = new JButton("+");
     private ArrayList<String> users = new ArrayList<>();
+    private ActionListener groupButtonListener;
 
     public GroupChatsPanel(Connection connection) {
         setLayout(new BorderLayout());
@@ -67,6 +68,7 @@ public class GroupChatsPanel extends JPanel {
             b.setMaximumSize(new Dimension(1000 / 4, 40));
             //b.addActionListener(clickOnUser);
             b.setBackground(Color.LIGHT_GRAY);
+            b.addActionListener(groupButtonListener);
             groupsPanel.add(b);
             //groupsPanel.add(Box.createHorizontalGlue());
         //}
@@ -138,5 +140,9 @@ public class GroupChatsPanel extends JPanel {
 
     public void setUsers(ArrayList<String> users) {
         this.users = users;
+    }
+
+    public void setClickOnGroupListener(ActionListener actionListener) {
+        groupButtonListener = actionListener;
     }
 }

@@ -46,6 +46,17 @@ public class Main {
         mainPanel.add(midPanel, BorderLayout.CENTER);
         mainPanel.add(groupChatsPanel, BorderLayout.LINE_END);
 
+        ActionListener clickOnGroupName = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                JButton button = (JButton)actionEvent.getSource();
+                midPanel.openGroupMessages(Integer.valueOf(button.getName()));
+                frame.getContentPane().repaint();
+                frame.setVisible(true);
+            }
+        };
+
+        groupChatsPanel.setClickOnGroupListener(clickOnGroupName);
 
         BRunnable afterLogin = new BRunnable() {
             private String name;
@@ -57,6 +68,7 @@ public class Main {
             public void run() {
                 frame.getContentPane().remove(loginPanel);
                 usersPanel.setUserName(name);
+                midPanel.setMyId(connection.getUserId());
                 frame.getContentPane().add(mainPanel);
                 //frame.getContentPane().add(usersPanel);
                 frame.getContentPane().repaint();
@@ -152,6 +164,45 @@ public class Main {
             }
         };
 
+        BRunnable populateWithGrpMsgs = new BRunnable() {
+            private String[] args;
+            @Override
+            public void setArgs(String [] args) { this.args = args; }
+            @Override
+            public void run() {
+                int gid = Integer.valueOf(args[1]);
+                for (int i = 2; i < args.length; i++) {
+                    int authorId = Integer.valueOf(args[i]);
+                    String text = args[i + 1];
+                    for (i = i + 2; i < args.length; i++) {
+                        if (args[i].equals(Character.toString((char)3)))
+                            break;
+                        text += " " + args[i];
+                    }
+                    midPanel.addGroupMsg(authorId, gid, text, false);
+                }
+                frame.setVisible(true);
+            }
+        };
+
+        BRunnable newGroupMsg = new BRunnable() {
+            private String[] args;
+            @Override
+            public void setArgs(String [] args) { this.args = args; }
+            @Override
+            public void run() {
+                int gid = Integer.valueOf(args[1]);
+                int authorId = Integer.valueOf(args[2]);
+                String text = args[3];
+                for (int i = 4; i < args.length; i++) {
+                    text += " " + args[i];
+                }
+                midPanel.addGroupMsg(authorId, gid, text, false);
+
+                frame.setVisible(true);
+            }
+        };
+
 
         connection.setAfterLogin(afterLogin);
         connection.setUsersInfoUpdate(usersInfoUpdate );
@@ -159,6 +210,8 @@ public class Main {
         connection.setPopulateWithPrivMsgs(populateWithPrivMsgs);
         connection.setUnseenMsgs(unseenMsgs);
         connection.setNewGroup(newGroup);
+        connection.setPopulateGroupMessages(populateWithGrpMsgs);
+        connection.setGroupMsg(newGroupMsg);
         connection.start();
 
 

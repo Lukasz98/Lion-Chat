@@ -162,6 +162,25 @@ public class MySQL {
         }
     }
 
+    public synchronized static ResultSet getGrpMsgs(int gid) throws SQLException {
+        synchronized (mysql) {
+            Statement stmt = mysql.conn.createStatement();
+            ResultSet rs = stmt.executeQuery(
+                    "SELECT author_id, text FROM groups_messages WHERE group_id=" + gid + ";"
+            );
+            return rs;
+        }
+    }
+
+    public synchronized static void sendGroupMsg(int authorId, int groupId, String text) throws SQLException{
+        synchronized (mysql) {
+            Statement stmt = mysql.conn.createStatement();
+            ResultSet rs = stmt.executeQuery(
+                    "INSERT INTO groups_messages (group_id, author_id, text) VALUES(" + groupId + ", " + authorId + ", '" + text + "');"
+            );
+        }
+    }
+
     public static void LoadPrintTest() {
         try {
             Statement stmt = mysql.conn.createStatement();
