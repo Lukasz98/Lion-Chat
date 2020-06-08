@@ -1,4 +1,5 @@
 import java.sql.*;
+import java.util.ArrayList;
 
 public class MySQL {
 
@@ -113,6 +114,51 @@ public class MySQL {
                 ResultSet rs = stmt.executeQuery(
                         "INSERT INTO priv_msg (sender_id, receiver_id, text, viewed) VALUES(" + authorId + ", " + receiverId + ", '" + text + "', false);"
                 );
+        }
+    }
+
+    public synchronized static int addNewGroup(int authorId, ArrayList<Integer> ids) throws SQLException{
+        synchronized (mysql) {
+            Statement stmt = mysql.conn.createStatement();
+            ResultSet rs = stmt.executeQuery(
+                    "INSERT INTO groups VALUES();"
+            );
+            rs = stmt.executeQuery(
+                    "SELECT id FROM groups ORDER BY id DESC LIMIT 1;"
+            );
+            int gid = -1;
+            while (rs.next()) {
+                gid = rs.getInt("id");
+            }
+            rs = stmt.executeQuery(
+                    "INSERT INTO group_members (group_id, member_id) VALUES(" + gid + ", " + authorId + ");"
+            );
+            for (int i = 0; i < ids.size(); i++) {
+                rs = stmt.executeQuery(
+                        "INSERT INTO group_members (group_id, member_id) VALUES(" + gid + ", " + ids.get(i) + ");"
+                );
+            }
+            return gid;
+        }
+    }
+
+    public synchronized static ResultSet getGroupsInfo(int memberId) throws SQLException{
+        synchronized (mysql) {
+            Statement stmt = mysql.conn.createStatement();
+            ResultSet rs = stmt.executeQuery(
+                    "SELECT group_id FROM group_members WHERE member_id=" + memberId + ";"
+            );
+            return rs;
+        }
+    }
+
+    public synchronized static ResultSet getGroupMembers(int gid) throws SQLException{
+        synchronized (mysql) {
+            Statement stmt = mysql.conn.createStatement();
+            ResultSet rs = stmt.executeQuery(
+                    "SELECT member_id FROM group_members WHERE group_id=" + gid + ";"
+            );
+            return rs;
         }
     }
 

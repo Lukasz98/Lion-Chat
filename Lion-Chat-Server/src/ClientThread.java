@@ -7,6 +7,7 @@ import java.io.PrintWriter;
 import java.net.Socket;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class ClientThread extends Thread {
 
@@ -56,6 +57,7 @@ public class ClientThread extends Thread {
             send(msg);
             sendUsersInfo();
             sendUnseenPrivMsgsIds();
+            sendOldGroupsInfo();
         }
     }
 
@@ -147,6 +149,47 @@ public class ClientThread extends Thread {
         }
     }
 
+    private void newGroupChat(String [] args) {
+        ArrayList<Integer> ids = new ArrayList<>();
+        for (int i = 1; i < args.length; i++) {
+            ids.add(Integer.valueOf(args[i]));
+        }
+        try {
+            int gid = MySQL.addNewGroup(id, ids);
+            sendNewGroupInfo(id, ids, gid);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void sendNewGroupInfo(int authorId, ArrayList<Integer> ids, int gid) {
+        String msg = "new_group " + gid + " " + authorId;
+        for (int i = 0; i < ids.size(); i++) {
+            msg += " " + ids.get(i);
+        }
+        send(msg);
+        for (int i = 0; i < ids.size(); i++) {
+            OnlineClientList.sendNewMessage(msg, ids.get(i));
+        }
+    }
+
+    private void sendOldGroupsInfo() {
+        try {
+            ResultSet rs = MySQL.getGroupsInfo(id);
+            while (rs.next()) {
+                int gid = rs.getInt("group_id");
+                ResultSet rs2 = MySQL.getGroupMembers(gid);
+                String msg = "new_group " + gid;
+                while (rs2.next()) {
+                    int mid = rs2.getInt("member_id");
+                    msg += " " + mid;
+                }
+                send(msg);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
     @Override
     public void run() {
@@ -180,6 +223,9 @@ public class ClientThread extends Thread {
                     else if (words.length == 2 && words[0].equals("saw_priv_msg")) {
                         int auth2 = Integer.valueOf(words[1]);
                         MySQL.markPrivMsgViewed(id, auth2);
+                    }
+                    else if (words.length >= 2 && words[0].equals("new_grp_chat")) {
+                        newGroupChat(words);
                     }
 
                 }

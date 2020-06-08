@@ -3,6 +3,8 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Main {
 
@@ -25,7 +27,7 @@ public class Main {
         JPanel mainPanel = new JPanel(new BorderLayout(0,0));
         UsersPanel usersPanel = new UsersPanel();
         MidPanel midPanel = new MidPanel(connection, usersPanel);
-        GroupChatsPanel groupChatsPanel = new GroupChatsPanel();
+        GroupChatsPanel groupChatsPanel = new GroupChatsPanel(connection);
 
 
         ActionListener clickOnUserName = new ActionListener() {
@@ -69,6 +71,16 @@ public class Main {
             @Override
             public void run() {
                 usersPanel.setUsersInfo(args);
+                ArrayList<String> arr = new ArrayList<>(Arrays.asList(Arrays.copyOfRange(args, 1, args.length)));
+                String myId = Integer.toString(connection.getUserId());
+                for (int i = 0; i < arr.size(); i += 2) {
+                    if (arr.get(i).equals(myId)) {
+                        arr.remove(i);
+                        if (i < arr.size()) arr.remove(i);
+                        break;
+                    }
+                }
+                groupChatsPanel.setUsers(arr);
                 frame.setVisible(true);
             }
         };
@@ -128,6 +140,17 @@ public class Main {
             }
         };
 
+        BRunnable newGroup = new BRunnable() {
+            private String[] args;
+            @Override
+            public void setArgs(String [] args) { this.args = args; }
+            @Override
+            public void run() {
+                String gid = args[1];
+                groupChatsPanel.addGroup(gid, Arrays.copyOfRange(args, 1, args.length));
+                frame.setVisible(true);
+            }
+        };
 
 
         connection.setAfterLogin(afterLogin);
@@ -135,6 +158,7 @@ public class Main {
         connection.setNewPrivMessg(newPrivMsg);
         connection.setPopulateWithPrivMsgs(populateWithPrivMsgs);
         connection.setUnseenMsgs(unseenMsgs);
+        connection.setNewGroup(newGroup);
         connection.start();
 
 

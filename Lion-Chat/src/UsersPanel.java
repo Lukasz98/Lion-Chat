@@ -54,7 +54,7 @@ public class UsersPanel extends JPanel {
     public void setUsersInfo(String [] info) {
         //usersPanel.removeAll();
 
-        for (int i = 1; i + 1 < info.length && i < info.length; i += 2) {
+        for (int i = 1; i + 1 < info.length; i += 2) {
             JButton b = new JButton(info[i + 1] + " id=" + info[i]);
             b.setName(info[i]); // name = id
             b.setMinimumSize(new Dimension(1000 / 4, 40));

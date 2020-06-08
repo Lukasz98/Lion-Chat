@@ -20,6 +20,7 @@ public class OnlineClientList {
             for (int i = 0; i < clientThreads.size(); i++) {
                 if (clientThreads.get(i).getClientId() == id) {
                     clientThreads.get(i).send(msg);
+                    //tutaj brejk
                 }
             }
         }

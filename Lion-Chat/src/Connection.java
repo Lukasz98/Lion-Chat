@@ -16,8 +16,8 @@ public class Connection extends Thread {
     private BRunnable usersInfoUpdate;
     private BRunnable newPrivMessg;
 
-
     private BRunnable unseenMsgs;
+    private BRunnable newGroup;
 
     private int id = -1;
 
@@ -68,6 +68,10 @@ public class Connection extends Thread {
                     unseenMsgs.setArgs(words);
                     SwingUtilities.invokeAndWait(unseenMsgs);
                 }
+                else if (words.length > 1 && words[0].equals("new_group")) {
+                    newGroup.setArgs(words);
+                    SwingUtilities.invokeAndWait(newGroup);
+                }
 
             }
 
@@ -90,5 +94,6 @@ public class Connection extends Thread {
     public void setNewPrivMessg(BRunnable r) { newPrivMessg = r; }
     public void setPopulateWithPrivMsgs(BRunnable populateWithPrivMsgs) { this.populateWithPrivMsgs = populateWithPrivMsgs; }
     public void setUnseenMsgs(BRunnable unseenMsgs) { this.unseenMsgs = unseenMsgs; }
+    public void setNewGroup(BRunnable r) { newGroup = r; }
 
 }
