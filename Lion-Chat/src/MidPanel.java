@@ -8,13 +8,15 @@ public class MidPanel extends JPanel {
     private ArrayList<GroupMessagePanel> groupMessagePanels = new ArrayList<>();
     private Connection connection;
     private UsersPanel usersPanel;
+    private GroupChatsPanel groupChatsPanel;
     private int myId;
 
     public void setMyId(int s) { myId = s; }
 
-    public MidPanel(Connection connection, UsersPanel usersPanel) {
+    public MidPanel(Connection connection, UsersPanel usersPanel, GroupChatsPanel groupChatsPanel) {
         this.usersPanel = usersPanel;
         this.connection = connection;
+        this.groupChatsPanel = groupChatsPanel;
         setBackground(Color.BLUE);
         setPreferredSize(new Dimension(1000 / 2, 700));
     }
@@ -47,6 +49,7 @@ public class MidPanel extends JPanel {
         for (int i = 0; i < groupMessagePanels.size(); i++) {
             if (groupMessagePanels.get(i).getGroupId() == groupId) {
                 if (groupMessagePanels.get(i).isUnseenMsgs()) {
+                    groupChatsPanel.groupButtonUnlight(Integer.toString(groupId));
                     //usersPanel.unLightUserButton(groupMessagePanels.get(i).getOtherUserId());
                 }
                 groupMessagePanels.get(i).setVisible(true);
@@ -84,7 +87,7 @@ public class MidPanel extends JPanel {
             makePanelUnseen(sender);
     }
 
-    public void addGroupMsg(int sender, int groupId, String text, boolean unseen) {
+    public void addGroupMsg(int sender, int groupId, String text) {
         for (int i = 0; i < groupMessagePanels.size(); i++) {
             if (groupMessagePanels.get(i).getGroupId() == groupId) {
                 groupMessagePanels.get(i).addMessage(text, sender);
@@ -92,9 +95,19 @@ public class MidPanel extends JPanel {
                 return;
             }
         }
-        addNewGroupMsgPanel(sender);
-        //if (unseen)
-        //    makePanelUnseen(sender);
+        addNewGroupMsgPanel(groupId);
+        addGroupMsg(sender, groupId, text);
+    }
+
+    public void makeGroupUnread(int groupId) {
+        for (int i = 0; i < groupMessagePanels.size(); i++) {
+            if (groupMessagePanels.get(i).getGroupId() == groupId) {
+                groupMessagePanels.get(i).setUnseenMsgs(true);
+                return;
+            }
+        }
+        addNewGroupMsgPanel(groupId);
+        makeGroupUnread(groupId);
     }
 
     public void makePanelUnseen(int id) {

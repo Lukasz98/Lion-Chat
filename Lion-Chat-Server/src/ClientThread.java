@@ -58,6 +58,7 @@ public class ClientThread extends Thread {
             sendUsersInfo();
             sendUnseenPrivMsgsIds();
             sendOldGroupsInfo();
+            sendGroupUnreedMsgNotification();
         }
     }
 
@@ -112,6 +113,9 @@ public class ClientThread extends Thread {
         try {
             MySQL.sendNewPrivMsg(id, receiverId, text);
             System.out.println("nowa_prywatna wiadomosc");
+
+
+            // te dwa ify trzeba poprawic
             if (OnlineClientList.isClientOnline(receiverId)) {
                 OnlineClientList.sendNewMessage("priv_msg " + id + " " + receiverId + " " + text, receiverId);
             }
@@ -203,8 +207,37 @@ public class ClientThread extends Thread {
                 int receiverId = rs.getInt("member_id");
                 if (OnlineClientList.isClientOnline(receiverId)) {
                     OnlineClientList.sendNewMessage("group_msg " + groupId + " " + id + " " + text, receiverId);
+                    if (receiverId != id)
+                        sendNewGroupMsgNotification(groupId, receiverId);
                 }
             }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void sendNewGroupMsgNotification(int groupId, int userId) {
+        if (userId == id)
+            send("group_msg_notification " + groupId);
+        else if (OnlineClientList.isClientOnline(userId))
+            OnlineClientList.sendNewMessage("group_msg_notification " + groupId, userId);
+    }
+
+    private void sendGroupUnreedMsgNotification() {
+        try {
+            ResultSet rs = MySQL.getUnreedGroupsId(id);
+            while (rs.next()) {
+                int groupId = rs.getInt("group_id");
+                sendNewGroupMsgNotification(groupId, id);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void viewedGroup(int groupId) {
+        try {
+            MySQL.setViewedGroup(groupId, id);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -257,7 +290,10 @@ public class ClientThread extends Thread {
                             text += " " + words[i];
                         newGroupMsg(groupId, text);
                     }
-
+                    else if (words.length >= 2 && words[0].equals("saw_grp_msg")) {
+                        int groupId = Integer.valueOf(words[1]);
+                        viewedGroup(groupId);
+                    }
                 }
             }
         } catch (IOException e) {

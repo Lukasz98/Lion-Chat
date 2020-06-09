@@ -29,6 +29,9 @@ public class Connection extends Thread {
 
     private BRunnable populateWithPrivMsgs;
 
+
+    private BRunnable groupMsgNotification;
+
     public Connection() throws IOException {
         String host = "localhost";
         int port = 55555;
@@ -85,6 +88,13 @@ public class Connection extends Thread {
                     groupMsg.setArgs(words);
                     SwingUtilities.invokeAndWait(groupMsg);
                 }
+                else if (words.length >= 2 && words[0].equals("group_msg_notification")) {
+                    System.out.println("msg notification");
+                    groupMsgNotification.setArgs(words);
+                    SwingUtilities.invokeAndWait(groupMsgNotification);
+                    //groupMsg.setArgs(words);
+                    //SwingUtilities.invokeAndWait(groupMsg);
+                }
 
             }
 
@@ -110,5 +120,6 @@ public class Connection extends Thread {
     public void setNewGroup(BRunnable r) { newGroup = r; }
     public void setPopulateGroupMessages(BRunnable populateGroupMessages) { this.populateGroupMessages = populateGroupMessages; }
     public void setGroupMsg(BRunnable groupMsg) { this.groupMsg = groupMsg; }
+    public void setGroupMsgNotification(BRunnable groupMsgNotification) { this.groupMsgNotification = groupMsgNotification; }
 
 }

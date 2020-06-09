@@ -64,7 +64,7 @@ public class GroupMessagePanel extends JPanel {
     public void setVisible(boolean v) {
         super.setVisible(v);
         if (v && unseenMsgs) {
-            //connection.send("saw_grp_msg " + groupId);
+            connection.send("saw_grp_msg " + groupId);
             unseenMsgs = false;
         }
     }

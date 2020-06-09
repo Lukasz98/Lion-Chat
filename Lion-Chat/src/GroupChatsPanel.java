@@ -14,6 +14,7 @@ public class GroupChatsPanel extends JPanel {
     private JButton newGroupButton = new JButton("+");
     private ArrayList<String> users = new ArrayList<>();
     private ActionListener groupButtonListener;
+    private ArrayList<JButton> groupButtons = new ArrayList<>();
 
     public GroupChatsPanel(Connection connection) {
         setLayout(new BorderLayout());
@@ -70,6 +71,7 @@ public class GroupChatsPanel extends JPanel {
             b.setBackground(Color.LIGHT_GRAY);
             b.addActionListener(groupButtonListener);
             groupsPanel.add(b);
+        groupButtons.add(b);
             //groupsPanel.add(Box.createHorizontalGlue());
         //}
         groupsPanel.repaint();
@@ -114,6 +116,7 @@ public class GroupChatsPanel extends JPanel {
                         }
                     });
                     b.setBackground(Color.LIGHT_GRAY);
+
                     panel.add(b);
                 }
 
@@ -136,6 +139,24 @@ public class GroupChatsPanel extends JPanel {
                 //JOptionPane.showMessageDialog(null, scrollPane, "tekst jakis", JOptionPane.OK_CANCEL_OPTION);
             }
         });
+    }
+
+    public void groupMsgNotification(String groupId) {
+        for (int i = 0; i < groupButtons.size(); i++) {
+            if (groupButtons.get(i).getName() != null && groupButtons.get(i).getName().equals(groupId)) {
+                groupButtons.get(i).setBackground(Color.red);
+                groupButtons.get(i).repaint();
+            }
+        }
+    }
+
+    public void groupButtonUnlight(String groupId) {
+        for (int i = 0; i < groupButtons.size(); i++) {
+            if (groupButtons.get(i).getName() != null && groupButtons.get(i).getName().equals(groupId)) {
+                groupButtons.get(i).setBackground(Color.LIGHT_GRAY);
+                groupButtons.get(i).repaint();
+            }
+        }
     }
 
     public void setUsers(ArrayList<String> users) {

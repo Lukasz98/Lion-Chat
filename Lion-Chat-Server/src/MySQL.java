@@ -133,6 +133,7 @@ public class MySQL {
             rs = stmt.executeQuery(
                     "INSERT INTO group_members (group_id, member_id) VALUES(" + gid + ", " + authorId + ");"
             );
+
             for (int i = 0; i < ids.size(); i++) {
                 rs = stmt.executeQuery(
                         "INSERT INTO group_members (group_id, member_id) VALUES(" + gid + ", " + ids.get(i) + ");"
@@ -178,6 +179,53 @@ public class MySQL {
             ResultSet rs = stmt.executeQuery(
                     "INSERT INTO groups_messages (group_id, author_id, text) VALUES(" + groupId + ", " + authorId + ", '" + text + "');"
             );
+            // tutaj bedzie wyzwalacz
+            rs = stmt.executeQuery(
+                    "SELECT id FROM groups_messages ORDER BY id DESC LIMIT 1;"
+            );
+            int msgId = -1;
+            while (rs.next()) {
+                msgId = rs.getInt("id");
+            }
+
+            rs = stmt.executeQuery(
+                    "SELECT member_id FROM group_members WHERE group_id=" + groupId + ";"
+            );
+
+            while (rs.next()) {
+                int memberId = rs.getInt("member_id");
+                System.out.println("MEMBER: " + memberId);
+                if (authorId == memberId) {
+                    stmt.executeQuery(
+                            "INSERT INTO group_msg_views (msg_id, group_id, viewer_id, viewed) VALUES(" + msgId + ", " + groupId + ", " + memberId + ", true);"
+                    );
+                }
+                else {
+                    stmt.executeQuery(
+                            "INSERT INTO group_msg_views (msg_id, group_id, viewer_id, viewed) VALUES(" + msgId + ", " + groupId + ", " + memberId + ", false);"
+                    );
+                }
+            }
+        }
+    }
+
+    public synchronized static ResultSet getUnreedGroupsId(int userId) throws SQLException{
+        synchronized (mysql) {
+            Statement stmt = mysql.conn.createStatement();
+            ResultSet rs = stmt.executeQuery(
+                    "SELECT group_id FROM group_msg_views WHERE viewer_id=" + userId + " AND viewed=false;"
+            );
+            return rs;
+        }
+    }
+
+    public synchronized static ResultSet setViewedGroup(int groupId, int userId) throws SQLException{
+        synchronized (mysql) {
+            Statement stmt = mysql.conn.createStatement();
+            ResultSet rs = stmt.executeQuery(
+                    "UPDATE group_msg_views SET viewed=true WHERE viewer_id=" + userId + " AND group_id='" + groupId + "';"
+            );
+            return rs;
         }
     }
 

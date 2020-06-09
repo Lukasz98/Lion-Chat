@@ -26,8 +26,8 @@ public class Main {
 
         JPanel mainPanel = new JPanel(new BorderLayout(0,0));
         UsersPanel usersPanel = new UsersPanel();
-        MidPanel midPanel = new MidPanel(connection, usersPanel);
         GroupChatsPanel groupChatsPanel = new GroupChatsPanel(connection);
+        MidPanel midPanel = new MidPanel(connection, usersPanel, groupChatsPanel);
 
 
         ActionListener clickOnUserName = new ActionListener() {
@@ -179,7 +179,7 @@ public class Main {
                             break;
                         text += " " + args[i];
                     }
-                    midPanel.addGroupMsg(authorId, gid, text, false);
+                    midPanel.addGroupMsg(authorId, gid, text);
                 }
                 frame.setVisible(true);
             }
@@ -197,12 +197,24 @@ public class Main {
                 for (int i = 4; i < args.length; i++) {
                     text += " " + args[i];
                 }
-                midPanel.addGroupMsg(authorId, gid, text, false);
+                midPanel.addGroupMsg(authorId, gid, text);
 
                 frame.setVisible(true);
             }
         };
 
+        BRunnable unreadGroupMsgNotification = new BRunnable() {
+            private String[] args;
+            @Override
+            public void setArgs(String [] args) { this.args = args; }
+            @Override
+            public void run() {
+                String groupId = args[1];
+                groupChatsPanel.groupMsgNotification(groupId);
+                midPanel.makeGroupUnread(Integer.valueOf(groupId));
+                frame.setVisible(true);
+            }
+        };
 
         connection.setAfterLogin(afterLogin);
         connection.setUsersInfoUpdate(usersInfoUpdate );
@@ -212,6 +224,7 @@ public class Main {
         connection.setNewGroup(newGroup);
         connection.setPopulateGroupMessages(populateWithGrpMsgs);
         connection.setGroupMsg(newGroupMsg);
+        connection.setGroupMsgNotification(unreadGroupMsgNotification);
         connection.start();
 
 
