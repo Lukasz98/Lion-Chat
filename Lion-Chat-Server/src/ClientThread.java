@@ -295,6 +295,8 @@ public class ClientThread extends Thread {
                         viewedGroup(groupId);
                     }
                 }
+                else
+                    break;
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -308,8 +310,9 @@ public class ClientThread extends Thread {
             }
             finally {
                 closeSocket();
-                OnlineClientList.removeClient(id);
+
             }
+            OnlineClientList.removeClient(id);
         }
     }
 
