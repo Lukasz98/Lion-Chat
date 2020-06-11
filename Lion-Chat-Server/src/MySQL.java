@@ -58,7 +58,7 @@ public class MySQL {
             try {
                 Statement stmt = mysql.conn.createStatement();
                 ResultSet rs = stmt.executeQuery(
-                        "SELECT priv_msg.sender_id as author, priv_msg.receiver_id as receiver, text FROM priv_msg WHERE" +
+                        "SELECT priv_msg.sender_id as author_id, priv_msg.receiver_id as receiver_id, text FROM priv_msg WHERE" +
                                 "(priv_msg.sender_id=" + auth1 + " AND priv_msg.receiver_id=" + auth2 + ") OR" +
                                 "(priv_msg.sender_id=" + auth2 + " AND priv_msg.receiver_id=" + auth1 + ");"
                 );
@@ -261,6 +261,15 @@ public class MySQL {
         }
     }
 
+    public synchronized static ResultSet getUserName(int id) throws SQLException{
+        synchronized (mysql) {
+            Statement stmt = mysql.conn.createStatement();
+            ResultSet rs = stmt.executeQuery(
+                    "SELECT login FROM userrs WHERE id=" + id + ";"
+            );
+            return rs;
+        }
+    }
 
     public static void LoadPrintTest() {
         try {

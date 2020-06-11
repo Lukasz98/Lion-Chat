@@ -99,13 +99,17 @@ public class ClientThread extends Thread {
             MySQL.sendNewPrivMsg(id, receiverId, text);
             System.out.println("nowa_prywatna wiadomosc");
 
+            ResultSet rs = MySQL.getUserName(id);
+            String name = "";
+            while (rs.next())
+                name = rs.getString("login");
 
             // te dwa ify trzeba poprawic
             if (OnlineClientList.isClientOnline(receiverId)) {
-                OnlineClientList.sendNewMessage("priv_msg " + id + " " + receiverId + " " + text, receiverId);
+                OnlineClientList.sendNewMessage("priv_msg " + id + " " + name + " " + receiverId + " " + text, receiverId);
             }
             if (receiverId != id) {
-                OnlineClientList.sendNewMessage("priv_msg " + id + " " + receiverId + " " + text, id);
+                OnlineClientList.sendNewMessage("priv_msg " + id + " " + name + " " + receiverId + " " + text, id);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -119,7 +123,12 @@ public class ClientThread extends Thread {
         String msg = "allPrivMsgs " + auth2;
         try {
             while (rs.next()) {
-                msg += " " + rs.getString("author") + " " + rs.getString("receiver") + " " + rs.getString("text") + " " + Character.toString((char)3);
+                int author_id = rs.getInt("author_id");
+                ResultSet rss = MySQL.getUserName(author_id);
+                String name = "";
+                while (rss.next())
+                    name = rss.getString("login");
+                msg += " " + author_id + " " + name + " " + rs.getString("receiver_id") + " " + rs.getString("text") + " " + Character.toString((char)3);
             }
             send(msg);
         } catch (SQLException e) {
@@ -174,7 +183,12 @@ public class ClientThread extends Thread {
             ResultSet rs = MySQL.getGrpMsgs(gid);
             String msg = "all_grp_msgs " + gid;
             while (rs.next()) {
-                msg += " " + rs.getInt("author_id") + " " + rs.getString("text") + " " + Character.toString((char)3);
+                int author_id = rs.getInt("author_id");
+                ResultSet rss = MySQL.getUserName(author_id);
+                String name = "";
+                while (rss.next())
+                    name = rss.getString("login");
+                msg += " " + author_id + " " + name + " " + rs.getString("text") + " " + Character.toString((char)3);
             }
             send(msg);
 
@@ -191,7 +205,11 @@ public class ClientThread extends Thread {
             while (rs.next()) {
                 int receiverId = rs.getInt("member_id");
                 if (OnlineClientList.isClientOnline(receiverId)) {
-                    OnlineClientList.sendNewMessage("group_msg " + groupId + " " + id + " " + text, receiverId);
+                    ResultSet rss = MySQL.getUserName(id);
+                    String name = "";
+                    while (rss.next())
+                        name = rss.getString("login");
+                    OnlineClientList.sendNewMessage("group_msg " + groupId + " " + id + " " + name + " " + text, receiverId);
                     if (receiverId != id)
                         sendNewGroupMsgNotification(groupId, receiverId);
                 }

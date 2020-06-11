@@ -14,7 +14,7 @@ public class MessagesPanel extends JScrollPane {
         messagesPanel.setLayout(null);
     }
 
-    public void addMessage(String msg, int authorId, boolean amIAuthor) {
+    public void addMessage(String msg, int authorId, boolean amIAuthor, String senderName) {
 
         Rectangle rectangle;
         Component[] components = messagesPanel.getComponents();
@@ -33,7 +33,8 @@ public class MessagesPanel extends JScrollPane {
             i += 6; // more characters due to adding <br>...
         }
 
-        msg = "<html>&emsp; " + authorId + ": " + msg + "</html>";
+//        msg = "<html>&emsp; " + authorId + ": " + msg + "</html>";
+        msg = "<html>&emsp; " + senderName + ": " + msg + "</html>";
         JLabel label = new JLabel(msg);
 
         if (amIAuthor) {

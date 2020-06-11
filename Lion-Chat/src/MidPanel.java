@@ -68,7 +68,7 @@ public class MidPanel extends JPanel {
         }
     }
 
-    public void addMsg(int sender, int receiver, String text, boolean unseen) {
+    public void addMsg(int sender, String senderName, int receiver, String text, boolean unseen) {
         int panelId = sender;
         if (sender != receiver) {
             if (sender == connection.getUserId())
@@ -77,7 +77,7 @@ public class MidPanel extends JPanel {
         }
         for (int i = 0; i < insidePanels.size(); i++) {
             if (insidePanels.get(i).getOtherUserId() == panelId) {
-                insidePanels.get(i).addMessage(text, sender);
+                insidePanels.get(i).addMessage(text, sender, senderName);
                 if (unseen) makePanelUnseen(panelId);
                 return;
             }
@@ -87,16 +87,16 @@ public class MidPanel extends JPanel {
             makePanelUnseen(sender);
     }
 
-    public void addGroupMsg(int sender, int groupId, String text) {
+    public void addGroupMsg(int sender, String senderName, int groupId, String text) {
         for (int i = 0; i < groupMessagePanels.size(); i++) {
             if (groupMessagePanels.get(i).getGroupId() == groupId) {
-                groupMessagePanels.get(i).addMessage(text, sender);
+                groupMessagePanels.get(i).addMessage(text, sender, senderName);
                 //if (unseen) makePanelUnseen(panelId);
                 return;
             }
         }
         addNewGroupMsgPanel(groupId);
-        addGroupMsg(sender, groupId, text);
+        addGroupMsg(sender, senderName, groupId, text);
     }
 
     public void makeGroupUnread(int groupId) {

@@ -6,10 +6,11 @@
       <change beforePath="$PROJECT_DIR$/src/ClientThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ClientThread.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/MySQL.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MySQL.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Lion-Chat/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Lion-Chat/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Lion-Chat/src/Connection.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Lion-Chat/src/Connection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Lion-Chat/src/GroupChatsPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Lion-Chat/src/GroupChatsPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lion-Chat/src/GroupMessagePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Lion-Chat/src/GroupMessagePanel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Lion-Chat/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Lion-Chat/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Lion-Chat/src/UsersPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Lion-Chat/src/UsersPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lion-Chat/src/MessagesPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Lion-Chat/src/MessagesPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lion-Chat/src/MidPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Lion-Chat/src/MidPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lion-Chat/src/PrivateMessagePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Lion-Chat/src/PrivateMessagePanel.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -80,22 +81,22 @@
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="1089" y="246" width="595" height="498" key="FileChooserDialogImpl/0.0.1920.1080@0.0.1920.1080" timestamp="1587049396258" />
-    <state width="1864" height="273" key="GridCell.Tab.0.bottom" timestamp="1591890248846">
+    <state width="1864" height="272" key="GridCell.Tab.0.bottom" timestamp="1591900382711">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1864" height="273" key="GridCell.Tab.0.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1591890248846" />
-    <state width="1864" height="273" key="GridCell.Tab.0.center" timestamp="1591890248846">
+    <state width="1864" height="272" key="GridCell.Tab.0.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1591900382711" />
+    <state width="1864" height="272" key="GridCell.Tab.0.center" timestamp="1591900382710">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1864" height="273" key="GridCell.Tab.0.center/0.0.1920.1080@0.0.1920.1080" timestamp="1591890248846" />
-    <state width="1864" height="273" key="GridCell.Tab.0.left" timestamp="1591890248846">
+    <state width="1864" height="272" key="GridCell.Tab.0.center/0.0.1920.1080@0.0.1920.1080" timestamp="1591900382710" />
+    <state width="1864" height="272" key="GridCell.Tab.0.left" timestamp="1591900382710">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1864" height="273" key="GridCell.Tab.0.left/0.0.1920.1080@0.0.1920.1080" timestamp="1591890248846" />
-    <state width="1864" height="273" key="GridCell.Tab.0.right" timestamp="1591890248846">
+    <state width="1864" height="272" key="GridCell.Tab.0.left/0.0.1920.1080@0.0.1920.1080" timestamp="1591900382710" />
+    <state width="1864" height="272" key="GridCell.Tab.0.right" timestamp="1591900382711">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1864" height="273" key="GridCell.Tab.0.right/0.0.1920.1080@0.0.1920.1080" timestamp="1591890248846" />
+    <state width="1864" height="272" key="GridCell.Tab.0.right/0.0.1920.1080@0.0.1920.1080" timestamp="1591900382711" />
     <state width="1864" height="352" key="GridCell.Tab.1.bottom" timestamp="1586957963939">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>

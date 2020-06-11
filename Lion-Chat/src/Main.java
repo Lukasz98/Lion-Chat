@@ -105,11 +105,12 @@ public class Main {
             public void run() {
 
                 int sender = Integer.valueOf(args[1]);
-                int receiver = Integer.valueOf(args[2]);
-                String text = args[3];
-                for (int i = 4; i < args.length; i++)
+                int receiver = Integer.valueOf(args[3]);
+                String senderName = args[2];
+                String text = args[4];
+                for (int i = 5; i < args.length; i++)
                     text += " " + args[i];
-                midPanel.addMsg(sender, receiver, text, true);
+                midPanel.addMsg(sender, senderName, receiver, text, true);
                 frame.setVisible(true);
             }
         };
@@ -123,14 +124,15 @@ public class Main {
 
                 int otherUserId = Integer.valueOf(args[1]);
                 for (int i = 2; i < args.length; i++) {
-                    int author = Integer.valueOf(args[i]), receiver = Integer.valueOf(args[i + 1]);
-                    String text = args[i + 2];
-                    for (i = i + 3; i < args.length; i++) {
+                    String authorName = args[i + 1];
+                    int author = Integer.valueOf(args[i]), receiver = Integer.valueOf(args[i + 2]);
+                    String text = args[i + 3];
+                    for (i = i + 4; i < args.length; i++) {
                         if (args[i].equals(Character.toString((char)3)))
                             break;
                         text += " " + args[i];
                     }
-                    midPanel.addMsg(author, receiver, text, false);
+                    midPanel.addMsg(author, authorName, receiver, text, false);
                 }
                 frame.setVisible(true);
             }
@@ -172,14 +174,15 @@ public class Main {
             public void run() {
                 int gid = Integer.valueOf(args[1]);
                 for (int i = 2; i < args.length; i++) {
+                    String authorName = args[i + 1];
                     int authorId = Integer.valueOf(args[i]);
-                    String text = args[i + 1];
-                    for (i = i + 2; i < args.length; i++) {
+                    String text = args[i + 2];
+                    for (i = i + 3; i < args.length; i++) {
                         if (args[i].equals(Character.toString((char)3)))
                             break;
                         text += " " + args[i];
                     }
-                    midPanel.addGroupMsg(authorId, gid, text);
+                    midPanel.addGroupMsg(authorId, authorName, gid, text);
                 }
                 frame.setVisible(true);
             }
@@ -193,11 +196,12 @@ public class Main {
             public void run() {
                 int gid = Integer.valueOf(args[1]);
                 int authorId = Integer.valueOf(args[2]);
-                String text = args[3];
-                for (int i = 4; i < args.length; i++) {
+                String authorName = args[3];
+                String text = args[4];
+                for (int i = 5; i < args.length; i++) {
                     text += " " + args[i];
                 }
-                midPanel.addGroupMsg(authorId, gid, text);
+                midPanel.addGroupMsg(authorId, authorName, gid, text);
 
                 frame.setVisible(true);
             }

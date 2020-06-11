@@ -47,8 +47,8 @@ public class GroupMessagePanel extends JPanel {
         connection.send("get_all_grp_msgs " + groupId);
     }
 
-    public void addMessage(String msg, int authorId) {
-        messagesPanel.addMessage(msg, authorId, authorId == myId);
+    public void addMessage(String msg, int authorId, String authorName) {
+        messagesPanel.addMessage(msg, authorId, authorId == myId, authorName);
     }
 
     public int getGroupId() { return groupId; }
