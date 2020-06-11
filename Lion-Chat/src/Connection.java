@@ -12,25 +12,19 @@ public class Connection extends Thread {
     private PrintWriter out;
     private BufferedReader in;
 
+    private int id = -1;
     private BRunnable afterLogin;
     private BRunnable usersInfoUpdate;
     private BRunnable newPrivMessg;
-
     private BRunnable unseenMsgs;
     private BRunnable newGroup;
-
-
     private BRunnable populateGroupMessages;
-
-
     private BRunnable groupMsg;
-    private int id = -1;
-
-
     private BRunnable populateWithPrivMsgs;
-
-
     private BRunnable groupMsgNotification;
+
+
+    private BRunnable userPropositionsList;
 
     public Connection() throws IOException {
         String host = "localhost";
@@ -92,8 +86,11 @@ public class Connection extends Thread {
                     System.out.println("msg notification");
                     groupMsgNotification.setArgs(words);
                     SwingUtilities.invokeAndWait(groupMsgNotification);
-                    //groupMsg.setArgs(words);
-                    //SwingUtilities.invokeAndWait(groupMsg);
+                }
+                else if (words.length >= 2 && words[0].equals("user_propositions_list")) {
+                    System.out.println("userPropoList");
+                    userPropositionsList.setArgs(words);
+                    SwingUtilities.invokeAndWait(userPropositionsList);
                 }
 
             }
@@ -121,5 +118,6 @@ public class Connection extends Thread {
     public void setPopulateGroupMessages(BRunnable populateGroupMessages) { this.populateGroupMessages = populateGroupMessages; }
     public void setGroupMsg(BRunnable groupMsg) { this.groupMsg = groupMsg; }
     public void setGroupMsgNotification(BRunnable groupMsgNotification) { this.groupMsgNotification = groupMsgNotification; }
+    public void setUserPropositionsList(BRunnable userPropositionsList) { this.userPropositionsList = userPropositionsList; }
 
 }

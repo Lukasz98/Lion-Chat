@@ -1,26 +1,37 @@
+import org.w3c.dom.Text;
+
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 public class UsersPanel extends JPanel {
 
     private String userName = "";
     private JLabel nameLabel;
-    private JScrollPane scrollPane = new JScrollPane(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED,
-            ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+    //private JScrollPane scrollPane = new JScrollPane(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED,
+      //      ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
     private JPanel usersPanel = new JPanel();
-    private JLabel title = new JLabel("All users:");
+    private JLabel addUserLabel = new JLabel("Add user:");
+    private JPanel addingUserListPanel = new JPanel();
+    private Connection connection;
 
-    public void setClickOnUser(ActionListener clickOnUser) {
-        this.clickOnUser = clickOnUser;
-    }
-
+    private JScrollPane scrollPaneUserPropos = new JScrollPane(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED,
+            ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+    private JButton addUser = new JButton("+");
     private ActionListener clickOnUser;
 
-    public UsersPanel() {
+    public UsersPanel(Connection connection) {
+        this.connection = connection;
         setLayout(new BorderLayout());
         setPreferredSize(new Dimension(1000 / 4, 500));
         setBackground(Color.red);
+
+        JScrollPane scrollPane = new JScrollPane(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED,
+                ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+
 
         JPanel topPanel = new JPanel();
         topPanel.setLayout(new BorderLayout());
@@ -28,8 +39,18 @@ public class UsersPanel extends JPanel {
         nameLabel = new JLabel("?");
         topPanel.add(nameLabel, BorderLayout.NORTH);
         //title.setPreferredSize(new Dimension(50, 50));
-        topPanel.add(title, BorderLayout.SOUTH);
 
+        JPanel addUserPanel = new JPanel();
+        addUserPanel.setLayout(new BorderLayout());
+        addUserPanel.add(addUserLabel, BorderLayout.LINE_START);
+
+        addUser.setBackground(Color.DARK_GRAY);
+        addUser.setForeground(Color.LIGHT_GRAY);
+        addUser.setPreferredSize(new Dimension(50, 50));
+        addUserPanel.add(addUser, BorderLayout.LINE_END);
+        topPanel.add(addUserPanel, BorderLayout.SOUTH);
+
+        setNewUserButtonListener();
 
         add(topPanel, BorderLayout.PAGE_START);
 
@@ -52,7 +73,7 @@ public class UsersPanel extends JPanel {
     }
 
     public void setUsersInfo(String [] info) {
-        //usersPanel.removeAll();
+        usersPanel.removeAll();
 
         for (int i = 1; i + 1 < info.length; i += 2) {
             JButton b = new JButton(info[i + 1] + " id=" + info[i]);
@@ -86,6 +107,86 @@ public class UsersPanel extends JPanel {
                 break;
             }
         }
+    }
+
+    private void setNewUserButtonListener() {
+        addingUserListPanel.setLayout(new BoxLayout(addingUserListPanel, BoxLayout.Y_AXIS));
+        addingUserListPanel.setBackground(Color.pink);
+
+        addUser.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+
+                JPanel mainPanel = new JPanel();
+                mainPanel.setLayout(new BorderLayout());
+                mainPanel.setPreferredSize(new Dimension(1000 / 4 -20, 50));
+
+                JPanel writerPanel = new JPanel();
+                writerPanel.setPreferredSize(new Dimension(1000 /4 -20, 50));
+                writerPanel.setBackground(Color.black);
+                JTextField textField = new JTextField();
+                textField.setPreferredSize(new Dimension(1000 /4 - 40, 30));
+                textField.setBackground(Color.GRAY);
+                textField.setForeground(Color.WHITE);
+                textField.grabFocus();
+                writerPanel.add(textField);
+                mainPanel.add(writerPanel, BorderLayout.NORTH);
+
+                textField.addKeyListener(new KeyListener() {
+                    @Override
+                    public void keyTyped(KeyEvent keyEvent) {
+                        connection.send("get_users_like " + textField.getText());
+                    }
+                    @Override
+                    public void keyPressed(KeyEvent keyEvent) {}
+                    @Override
+                    public void keyReleased(KeyEvent keyEvent) {}
+                });
+
+
+                addingUserListPanel.removeAll();
+                addingUserListPanel.setLayout(new BoxLayout(addingUserListPanel, BoxLayout.Y_AXIS));
+                mainPanel.add(addingUserListPanel);
+
+                scrollPaneUserPropos.setPreferredSize(new Dimension(1000 / 4, 500));
+                scrollPaneUserPropos.setViewportView(mainPanel);
+
+                int val = JOptionPane.showOptionDialog(null, scrollPaneUserPropos, "testst ",
+                        JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE, null, new String[]{"cancel"}, 0);
+                if (val == 0) {
+                    System.out.println("done marked");
+                }
+
+            }
+        });
+    }
+
+    public void addUserToPropositionsList(String userName, int id) {
+        System.out.println("addingUserPropodolisty");
+        JButton userButton = new JButton(userName);
+        userButton.setMinimumSize(new Dimension(1000 / 4, 40));
+        userButton.setPreferredSize(new Dimension(1000 / 4, 40));
+        userButton.setMaximumSize(new Dimension(1000 / 4, 40));
+        userButton.setName(Integer.toString(id));
+        userButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                String id = ((JButton)actionEvent.getSource()).getName();
+                connection.send("add_contact " + id);
+            }
+        });
+        addingUserListPanel.add(userButton);
+        addingUserListPanel.repaint();
+        scrollPaneUserPropos.validate();
+    }
+
+    public void clearUserPropositionsList() {
+        addingUserListPanel.removeAll();
+        scrollPaneUserPropos.validate();
+    }
+
+    public void setClickOnUser(ActionListener clickOnUser) {
+        this.clickOnUser = clickOnUser;
     }
 
 }

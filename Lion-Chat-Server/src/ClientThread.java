@@ -62,22 +62,7 @@ public class ClientThread extends Thread {
         }
     }
 
-    private void sendUsersInfo() {
-        ResultSet rs = MySQL.getUsersInfo();
-        try {
-            String msg = "usersInfo ";
-            while (rs.next()) {
-                int uid = rs.getInt("id");
-                String uname = rs.getString("login");
-                msg += Integer.toString(uid) + " " + uname + " ";
-            }
-            if (msg.length() > 10) {
-                send(msg);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
+
 /*
     private void sendOldPrivMsg(int auth2) {
         ResultSet rs = MySQL.getUsersInfo();
@@ -243,6 +228,46 @@ public class ClientThread extends Thread {
         }
     }
 
+    private void sendUserPropositionsList(String name) {
+        try {
+            ResultSet rs = MySQL.getListOfUsersLike(name);
+            String msg = "user_propositions_list";
+            while (rs.next()) {
+                msg += " " + rs.getString("login") + " " + rs.getInt("id");
+            }
+            if (msg.length() > 23)
+                send(msg);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void addContact(String contactId) {
+        try {
+            MySQL.addContact(id, Integer.valueOf(contactId));
+            sendUsersInfo();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void sendUsersInfo() {
+        try {
+            ResultSet rs = MySQL.getContacts(id);
+            String msg = "usersInfo ";
+            while (rs.next()) {
+                int uid = rs.getInt("id");
+                String uname = rs.getString("login");
+                msg += Integer.toString(uid) + " " + uname + " ";
+            }
+            if (msg.length() > 10) {
+                send(msg);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     @Override
     public void run() {
         if (!set)
@@ -293,6 +318,12 @@ public class ClientThread extends Thread {
                     else if (words.length >= 2 && words[0].equals("saw_grp_msg")) {
                         int groupId = Integer.valueOf(words[1]);
                         viewedGroup(groupId);
+                    }
+                    else if (words.length >= 2 && words[0].equals("get_users_like")) {
+                        sendUserPropositionsList(words[1]);
+                    }
+                    else if (words.length >= 2 && words[0].equals("add_contact")) {
+                        addContact(words[1]);
                     }
                 }
                 else

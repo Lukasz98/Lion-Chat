@@ -229,6 +229,39 @@ public class MySQL {
         }
     }
 
+    public synchronized static ResultSet getListOfUsersLike(String name) throws SQLException{
+        synchronized (mysql) {
+            Statement stmt = mysql.conn.createStatement();
+            ResultSet rs = stmt.executeQuery(
+                    "SELECT login, id FROM userrs WHERE login LIKE '" + name + "%';"
+            );
+            return rs;
+        }
+    }
+
+    public synchronized static void addContact(int id1, int id2) throws SQLException{
+        synchronized (mysql) {
+            Statement stmt = mysql.conn.createStatement();
+            ResultSet rs = stmt.executeQuery(
+                    "INSERT INTO contacts VALUES(" + id1 + ", " + id2 + ");"
+            );
+        }
+    }
+
+    public synchronized static ResultSet getContacts(int id) throws SQLException{
+        synchronized (mysql) {
+            Statement stmt = mysql.conn.createStatement();
+            ResultSet rs = stmt.executeQuery(
+                    "SELECT user_id2 as 'id', login FROM contacts LEFT JOIN userrs ON userrs.id=user_id2 WHERE user_id1=" + id +
+                            " UNION " +
+                            "SELECT user_id1 as 'id', login FROM contacts LEFT JOIN userrs ON userrs.id=user_id1 WHERE user_id2=" + id + ";"
+//                            " SELECT id1 as 'id' FROM contacts WHERE id2=" + id + ";"
+            );
+            return rs;
+        }
+    }
+
+
     public static void LoadPrintTest() {
         try {
             Statement stmt = mysql.conn.createStatement();

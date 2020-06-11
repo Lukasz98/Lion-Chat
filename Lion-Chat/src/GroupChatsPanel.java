@@ -60,8 +60,8 @@ public class GroupChatsPanel extends JPanel {
         //groupsPanel.removeAll();
         //groupsPanel.add(title);
         //for (int i = 1; i + 1 < info.length && i < info.length; i += 2) {
-        JButton b = new JButton("Group id=" + id);
-        b.setName(id); // name = id
+            JButton b = new JButton("Group id=" + id);
+            b.setName(id); // name = id
             //JButton b = new JButton(info[i + 1] + " id=" + info[i]);
             //b.setName(info[i]); // name = id
             b.setMinimumSize(new Dimension(1000 / 4, 40));
@@ -71,7 +71,7 @@ public class GroupChatsPanel extends JPanel {
             b.setBackground(Color.LIGHT_GRAY);
             b.addActionListener(groupButtonListener);
             groupsPanel.add(b);
-        groupButtons.add(b);
+            groupButtons.add(b);
             //groupsPanel.add(Box.createHorizontalGlue());
         //}
         groupsPanel.repaint();
@@ -130,10 +130,11 @@ public class GroupChatsPanel extends JPanel {
                         String msg = "new_grp_chat";
                         for (int i = 0; i < markedUsers.size(); i++) {
                             msg += " " + markedUsers.get(i);
-                            System.out.println("marked user = "+markedUsers.get(i));
+                            System.out.println("marked user = " + markedUsers.get(i));
                         }
                         connection.send(msg);
-                    }                }
+                    }
+                }
 
 
                 //JOptionPane.showMessageDialog(null, scrollPane, "tekst jakis", JOptionPane.OK_CANCEL_OPTION);

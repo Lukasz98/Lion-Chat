@@ -25,7 +25,7 @@ public class Main {
         LoginPanel loginPanel = new LoginPanel(connection);
 
         JPanel mainPanel = new JPanel(new BorderLayout(0,0));
-        UsersPanel usersPanel = new UsersPanel();
+        UsersPanel usersPanel = new UsersPanel(connection);
         GroupChatsPanel groupChatsPanel = new GroupChatsPanel(connection);
         MidPanel midPanel = new MidPanel(connection, usersPanel, groupChatsPanel);
 
@@ -216,6 +216,20 @@ public class Main {
             }
         };
 
+        BRunnable userPropositionsList = new BRunnable() {
+            private String[] args;
+            @Override
+            public void setArgs(String [] args) { this.args = args; }
+            @Override
+            public void run() {
+                usersPanel.clearUserPropositionsList();
+                for (int i = 1; i + 1 < args.length; i += 2) {
+                    usersPanel.addUserToPropositionsList(args[i], Integer.valueOf(args[i + 1]));
+                }
+                frame.setVisible(true);
+            }
+        };
+
         connection.setAfterLogin(afterLogin);
         connection.setUsersInfoUpdate(usersInfoUpdate );
         connection.setNewPrivMessg(newPrivMsg);
@@ -225,6 +239,7 @@ public class Main {
         connection.setPopulateGroupMessages(populateWithGrpMsgs);
         connection.setGroupMsg(newGroupMsg);
         connection.setGroupMsgNotification(unreadGroupMsgNotification);
+        connection.setUserPropositionsList(userPropositionsList);
         connection.start();
 
 
