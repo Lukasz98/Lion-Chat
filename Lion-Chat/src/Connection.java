@@ -1,3 +1,6 @@
+import javax.crypto.*;
+import javax.crypto.spec.IvParameterSpec;
+import javax.crypto.spec.SecretKeySpec;
 import javax.swing.*;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -5,6 +8,9 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.lang.reflect.InvocationTargetException;
 import java.net.Socket;
+import java.security.InvalidAlgorithmParameterException;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
 
 public class Connection extends Thread {
 
@@ -38,7 +44,7 @@ public class Connection extends Thread {
     }
 
     public synchronized void send(String msg)  {
-        out.println(msg);
+            out.println(msg);
     }
 
     @Override

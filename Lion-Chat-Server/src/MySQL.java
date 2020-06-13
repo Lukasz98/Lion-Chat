@@ -17,7 +17,7 @@ public class MySQL {
     public static void Init() throws SQLException {
         mysql = new MySQL();
         Statement stmt = mysql.conn.createStatement();
-        stmt.executeQuery("use lion_chat");
+        stmt.executeQuery("use Lion_chat");
     }
 
     public synchronized static int tryToLogin(String login, String passwd) {
@@ -25,7 +25,7 @@ public class MySQL {
             try {
                 Statement stmt = mysql.conn.createStatement();
                 ResultSet rs = stmt.executeQuery(
-                    "SELECT id, login, passwd FROM userrs WHERE login='" + login + "' AND passwd='" + passwd + "';"
+                    "SELECT id, login, passwd FROM users WHERE login='" + login + "' AND passwd=unhex(md5('" + passwd + "'));"
                 );
                 while (rs.next()) {
                     System.out.println(rs.getString("login"));
@@ -43,7 +43,7 @@ public class MySQL {
             try {
                 Statement stmt = mysql.conn.createStatement();
                 ResultSet rs = stmt.executeQuery(
-                        "SELECT id, login FROM userrs;"
+                        "SELECT id, login FROM users;"
                 );
                 return rs;
             } catch (SQLException e) {
@@ -58,9 +58,9 @@ public class MySQL {
             try {
                 Statement stmt = mysql.conn.createStatement();
                 ResultSet rs = stmt.executeQuery(
-                        "SELECT priv_msg.sender_id as author_id, priv_msg.receiver_id as receiver_id, text FROM priv_msg WHERE" +
-                                "(priv_msg.sender_id=" + auth1 + " AND priv_msg.receiver_id=" + auth2 + ") OR" +
-                                "(priv_msg.sender_id=" + auth2 + " AND priv_msg.receiver_id=" + auth1 + ");"
+                        "SELECT priv_messages.sender_id as author_id, priv_messages.receiver_id as receiver_id, text FROM priv_messages WHERE" +
+                                "(priv_messages.sender_id=" + auth1 + " AND priv_messages.receiver_id=" + auth2 + ") OR" +
+                                "(priv_messages.sender_id=" + auth2 + " AND priv_messages.receiver_id=" + auth1 + ");"
                 );
                 return rs;
             } catch (SQLException e) {
@@ -75,9 +75,9 @@ public class MySQL {
             try {
                 Statement stmt = mysql.conn.createStatement();
                 ResultSet rs = stmt.executeQuery(
-                        "UPDATE priv_msg SET viewed=true WHERE" +
-                                " (priv_msg.receiver_id=" + id1 + "" + " AND priv_msg.sender_id=" + id2 + ") "
-//                                " (priv_msg.receiver_id=" + id1 + "" + " AND priv_msg.sender_id=" + id1 + ");"
+                        "UPDATE priv_messages SET viewed=true WHERE" +
+                                " (priv_messages.receiver_id=" + id1 + "" + " AND priv_messages.sender_id=" + id2 + ") "
+//                                " (priv_messages.receiver_id=" + id1 + "" + " AND priv_messages.sender_id=" + id1 + ");"
                 );
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -90,16 +90,9 @@ public class MySQL {
             try {
                 Statement stmt = mysql.conn.createStatement();
                 ResultSet rs = stmt.executeQuery(
-                        "SELECT priv_msg.sender_id as id FROM priv_msg WHERE" +
-                                " priv_msg.receiver_id=" + id + "" + " AND priv_msg.viewed=FALSE;"
+                        "SELECT priv_messages.sender_id as id FROM priv_messages WHERE" +
+                                " priv_messages.receiver_id=" + id + "" + " AND priv_messages.viewed=FALSE;"
                 );
-                /*"SELECT priv_msg.sender_id as id FROM priv_msg WHERE" +
-                                "(priv_msg.sender_id=" + id + ")" + " UNION " +
-                            "SELECT priv_msg.receiver_id as id FROM priv_msg WHERE" +
-                                "(priv_msg.receiver_id=" + id + ")"
-
-                * */
-
                 return rs;
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -112,7 +105,7 @@ public class MySQL {
         synchronized (mysql) {
                 Statement stmt = mysql.conn.createStatement();
                 ResultSet rs = stmt.executeQuery(
-                        "INSERT INTO priv_msg (sender_id, receiver_id, text, viewed) VALUES(" + authorId + ", " + receiverId + ", '" + text + "', false);"
+                        "INSERT INTO priv_messages (sender_id, receiver_id, text, viewed) VALUES(" + authorId + ", " + receiverId + ", '" + text + "', false);"
                 );
         }
     }
@@ -167,7 +160,7 @@ public class MySQL {
         synchronized (mysql) {
             Statement stmt = mysql.conn.createStatement();
             ResultSet rs = stmt.executeQuery(
-                    "SELECT author_id, text FROM groups_messages WHERE group_id=" + gid + ";"
+                    "SELECT author_id, text FROM group_messages WHERE group_id=" + gid + ";"
             );
             return rs;
         }
@@ -177,11 +170,11 @@ public class MySQL {
         synchronized (mysql) {
             Statement stmt = mysql.conn.createStatement();
             ResultSet rs = stmt.executeQuery(
-                    "INSERT INTO groups_messages (group_id, author_id, text) VALUES(" + groupId + ", " + authorId + ", '" + text + "');"
+                    "INSERT INTO group_messages (group_id, author_id, text) VALUES(" + groupId + ", " + authorId + ", '" + text + "');"
             );
             // tutaj bedzie wyzwalacz
             rs = stmt.executeQuery(
-                    "SELECT id FROM groups_messages ORDER BY id DESC LIMIT 1;"
+                    "SELECT id FROM group_messages ORDER BY id DESC LIMIT 1;"
             );
             int msgId = -1;
             while (rs.next()) {
@@ -233,7 +226,7 @@ public class MySQL {
         synchronized (mysql) {
             Statement stmt = mysql.conn.createStatement();
             ResultSet rs = stmt.executeQuery(
-                    "SELECT login, id FROM userrs WHERE login LIKE '" + name + "%';"
+                    "SELECT login, id FROM users WHERE login LIKE '" + name + "%';"
             );
             return rs;
         }
@@ -252,9 +245,9 @@ public class MySQL {
         synchronized (mysql) {
             Statement stmt = mysql.conn.createStatement();
             ResultSet rs = stmt.executeQuery(
-                    "SELECT user_id2 as 'id', login FROM contacts LEFT JOIN userrs ON userrs.id=user_id2 WHERE user_id1=" + id +
+                    "SELECT user_id2 as 'id', login FROM contacts LEFT JOIN users ON users.id=user_id2 WHERE user_id1=" + id +
                             " UNION " +
-                            "SELECT user_id1 as 'id', login FROM contacts LEFT JOIN userrs ON userrs.id=user_id1 WHERE user_id2=" + id + ";"
+                            "SELECT user_id1 as 'id', login FROM contacts LEFT JOIN users ON users.id=user_id1 WHERE user_id2=" + id + ";"
 //                            " SELECT id1 as 'id' FROM contacts WHERE id2=" + id + ";"
             );
             return rs;
@@ -265,7 +258,7 @@ public class MySQL {
         synchronized (mysql) {
             Statement stmt = mysql.conn.createStatement();
             ResultSet rs = stmt.executeQuery(
-                    "SELECT login FROM userrs WHERE id=" + id + ";"
+                    "SELECT login FROM users WHERE id=" + id + ";"
             );
             return rs;
         }
@@ -274,8 +267,8 @@ public class MySQL {
     public static void LoadPrintTest() {
         try {
             Statement stmt = mysql.conn.createStatement();
-            stmt.executeQuery("use lion_chat");
-            ResultSet rs = stmt.executeQuery("SELECT * FROM userrs");
+            stmt.executeQuery("use Lion_chat");
+            ResultSet rs = stmt.executeQuery("SELECT * FROM users");
             while (rs.next()) {
                 System.out.println(rs.getString("login"));
             }

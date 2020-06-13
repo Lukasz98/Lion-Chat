@@ -1,10 +1,16 @@
 import org.mariadb.jdbc.internal.util.SqlStates;
 
+import javax.crypto.*;
+import javax.crypto.spec.IvParameterSpec;
+import javax.crypto.spec.SecretKeySpec;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.security.InvalidAlgorithmParameterException;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -296,6 +302,7 @@ public class ClientThread extends Thread {
             while (true) {
                 if (((line = in.readLine()) != null)) {
                     System.out.println(line);
+
                     String words[] = line.split(" ");
                     if (words.length > 1 && words[0].equals("login")) {
                         tryToLogin(words);
@@ -349,8 +356,7 @@ public class ClientThread extends Thread {
             }
         } catch (IOException e) {
             e.printStackTrace();
-        }
-        finally {
+        } finally {
             out.close();
             try {
                 in.close();
