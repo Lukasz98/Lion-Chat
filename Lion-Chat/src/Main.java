@@ -12,7 +12,7 @@ public class Main {
         JFrame frame = new JFrame("Lion");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setBounds(200, 200, 1000, 700);
-        frame.getContentPane().setBackground(Color.decode("#191919"));
+        frame.getContentPane().setBackground(Color.LIGHT_GRAY);//Color.decode("#191919"));
 
         Connection connection;
         try {

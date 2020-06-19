@@ -15,7 +15,7 @@ public class PrivateMessagePanel extends JPanel {
     public PrivateMessagePanel(Connection connection, int receiverId) {
         otherUserId = receiverId;
         this.connection = connection;
-        setBackground(Color.GREEN);
+        setBackground(Color.DARK_GRAY);
         setPreferredSize(new Dimension(1000 / 2 - 20, 700 - 10));
 
 //        messagesPanel.setPreferredSize(new Dimension(1000 / 2 -20, 600));
@@ -44,8 +44,6 @@ public class PrivateMessagePanel extends JPanel {
         });
         writerPanel.add(textField);
 
-        //add(messagesPanel);
-//        add(scrollPane);
         add(writerPanel);
 
         connection.send("get_all_priv_msgs " + receiverId);

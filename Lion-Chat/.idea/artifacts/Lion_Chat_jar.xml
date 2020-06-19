@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="Lion-Chat:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/Lion_Chat_jar</output-path>
+    <root id="archive" name="Lion-Chat.jar">
+      <element id="module-output" name="Lion-Chat" />
+    </root>
+  </artifact>
+</component>

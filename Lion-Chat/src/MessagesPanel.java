@@ -10,7 +10,7 @@ public class MessagesPanel extends JScrollPane {
         setPreferredSize(new Dimension(1000 / 2 - 20, 600));
         setViewportView(messagesPanel);
 
-        messagesPanel.setBackground(Color.pink);
+        messagesPanel.setBackground(Color.DARK_GRAY);
         messagesPanel.setLayout(null);
     }
 

@@ -18,31 +18,24 @@ public class GroupChatsPanel extends JPanel {
 
     public GroupChatsPanel(Connection connection) {
         setLayout(new BorderLayout());
-        setBackground(Color.cyan);
+        setBackground(Color.DARK_GRAY);
         setPreferredSize(new Dimension(1000 / 4, 500));
 
+        title.setForeground(Color.lightGray);
         JPanel topPanel = new JPanel();
         topPanel.setLayout(new BorderLayout());
-        //topPanel.setPreferredSize(new Dimension(1000 / 5, 50));
-        //title.setPreferredSize(new Dimension(1000 / 5, 50));
+        topPanel.setBackground(Color.DARK_GRAY);
         title.setPreferredSize(new Dimension(50, 50));
         newGroupButton.setPreferredSize(new Dimension(50, 50));
-        newGroupButton.setBackground(Color.DARK_GRAY);
+        newGroupButton.setBackground(Color.decode("#100e42"));
         newGroupButton.setForeground(Color.LIGHT_GRAY);
         topPanel.add(title, BorderLayout.LINE_START);
         topPanel.add(newGroupButton, BorderLayout.LINE_END);
         add(topPanel, BorderLayout.PAGE_START);
 
-        groupsPanel.setBackground(Color.pink);
-        //groupsPanel.setSize(new Dimension(1000 / 4, 100));
+        groupsPanel.setBackground(Color.DARK_GRAY);
         groupsPanel.setLayout(new BoxLayout(groupsPanel, BoxLayout.Y_AXIS));
-        //groupsPanel.setLayout(new GridLayout(0, 1, 0, 2));
- //       groupsPanel.setSize(1000 /4, -1);
-//        groupsPanel.setLayout(Layout());
-        //groupsPanel.setPreferredSize(new Dimension(1000 / 4, 500));
-//        groupsPanel.setMinimumSize(new Dimension(1000 / 4, 500));
-        //groupsPanel.setMaximumSize(new Dimension(1000 / 4, 5500));
-        scrollPane.setBackground(Color.GREEN);
+        scrollPane.setBackground(Color.DARK_GRAY);
         scrollPane.setPreferredSize(new Dimension(1000 / 4, 100));
         scrollPane.setViewportView(groupsPanel);
 
@@ -50,30 +43,18 @@ public class GroupChatsPanel extends JPanel {
 
         setNewGroupButtonListener(connection);
 
-        //String testGroups = "- 1 grupa 2 grupka";
-        //for (int i = 0; i < 30; i++)
-        //    testGroups += " " + i + " grupka";
-        //addGroups(testGroups.split(" "));
     }
 
     public void addGroup(String id, String [] users) {
-        //groupsPanel.removeAll();
-        //groupsPanel.add(title);
-        //for (int i = 1; i + 1 < info.length && i < info.length; i += 2) {
-            JButton b = new JButton("Group id=" + id);
-            b.setName(id); // name = id
-            //JButton b = new JButton(info[i + 1] + " id=" + info[i]);
-            //b.setName(info[i]); // name = id
-            b.setMinimumSize(new Dimension(1000 / 4, 40));
-            b.setPreferredSize(new Dimension(1000 / 4, 40));
-            b.setMaximumSize(new Dimension(1000 / 4, 40));
-            //b.addActionListener(clickOnUser);
-            b.setBackground(Color.LIGHT_GRAY);
-            b.addActionListener(groupButtonListener);
-            groupsPanel.add(b);
-            groupButtons.add(b);
-            //groupsPanel.add(Box.createHorizontalGlue());
-        //}
+        JButton b = new JButton("Group id=" + id);
+        b.setName(id); // name = id
+        b.setMinimumSize(new Dimension(1000 / 4, 40));
+        b.setPreferredSize(new Dimension(1000 / 4, 40));
+        b.setMaximumSize(new Dimension(1000 / 4, 40));
+        b.setBackground(Color.LIGHT_GRAY);
+        b.addActionListener(groupButtonListener);
+        groupsPanel.add(b);
+        groupButtons.add(b);
         groupsPanel.repaint();
     }
 

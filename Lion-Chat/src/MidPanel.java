@@ -17,7 +17,7 @@ public class MidPanel extends JPanel {
         this.usersPanel = usersPanel;
         this.connection = connection;
         this.groupChatsPanel = groupChatsPanel;
-        setBackground(Color.BLUE);
+        setBackground(Color.DARK_GRAY);
         setPreferredSize(new Dimension(1000 / 2, 700));
     }
 
@@ -91,7 +91,6 @@ public class MidPanel extends JPanel {
         for (int i = 0; i < groupMessagePanels.size(); i++) {
             if (groupMessagePanels.get(i).getGroupId() == groupId) {
                 groupMessagePanels.get(i).addMessage(text, sender, senderName);
-                //if (unseen) makePanelUnseen(panelId);
                 return;
             }
         }

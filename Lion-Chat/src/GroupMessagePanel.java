@@ -16,7 +16,7 @@ public class GroupMessagePanel extends JPanel {
         this.groupId = groupId;
         this.myId = myId;
         this.connection = connection;
-        setBackground(Color.GREEN);
+        setBackground(Color.DARK_GRAY);
         setPreferredSize(new Dimension(1000 / 2 - 20, 700 - 10));
 
         add(messagesPanel);

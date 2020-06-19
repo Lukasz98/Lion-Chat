@@ -35,16 +35,22 @@ public class UsersPanel extends JPanel {
 
         JPanel topPanel = new JPanel();
         topPanel.setLayout(new BorderLayout());
+        topPanel.setBackground(Color.DARK_GRAY);
+        topPanel.setForeground(Color.lightGray);
         //topPanel.setPreferredSize(new Dimension(1000 / 4, 100));
         nameLabel = new JLabel("?");
+        nameLabel.setForeground(Color.LIGHT_GRAY);
         topPanel.add(nameLabel, BorderLayout.NORTH);
         //title.setPreferredSize(new Dimension(50, 50));
 
+        addUserLabel.setBackground(Color.DARK_GRAY);
+        addUserLabel.setForeground(Color.LIGHT_GRAY);
         JPanel addUserPanel = new JPanel();
+        addUserPanel.setBackground(Color.DARK_GRAY);
         addUserPanel.setLayout(new BorderLayout());
         addUserPanel.add(addUserLabel, BorderLayout.LINE_START);
 
-        addUser.setBackground(Color.DARK_GRAY);
+        addUser.setBackground(Color.decode("#100e42"));//Color.DARK_GRAY);
         addUser.setForeground(Color.LIGHT_GRAY);
         addUser.setPreferredSize(new Dimension(50, 50));
         addUserPanel.add(addUser, BorderLayout.LINE_END);
@@ -54,7 +60,7 @@ public class UsersPanel extends JPanel {
 
         add(topPanel, BorderLayout.PAGE_START);
 
-        usersPanel.setBackground(Color.pink);
+        usersPanel.setBackground(Color.DARK_GRAY);
         usersPanel.setLayout(new BoxLayout(usersPanel, BoxLayout.Y_AXIS));
         //usersPanel.setLayout(new GridLayout(0, 1, 0, 2));
         scrollPane.setPreferredSize(new Dimension(1000 / 4, 100));
@@ -111,7 +117,7 @@ public class UsersPanel extends JPanel {
 
     private void setNewUserButtonListener() {
         addingUserListPanel.setLayout(new BoxLayout(addingUserListPanel, BoxLayout.Y_AXIS));
-        addingUserListPanel.setBackground(Color.pink);
+        addingUserListPanel.setBackground(Color.DARK_GRAY);
 
         addUser.addActionListener(new ActionListener() {
             @Override
