@@ -1,9 +1,10 @@
 CREATE DATABASE Lion_chat;
+USE Lion_chat;
 
 CREATE TABLE users ( 
 	id INTEGER PRIMARY KEY AUTO_INCREMENT, 
 	login VARCHAR(20) NOT NULL, 
-	passwd BINARY NOT NULL 
+	passwd BINARY(16) NOT NULL 
 );
 
 CREATE TABLE groups ( 
@@ -55,6 +56,18 @@ CREATE TABLE priv_messages (
     FOREIGN KEY (sender_id) REFERENCES users(id),
     FOREIGN KEY (receiver_id) REFERENCES users(id)
 );
+
+DELIMITER$$
+CREATE TRIGGER after_grp_msg_insert
+AFTER INSERT
+ON group_messages FOR EACH ROW
+BEGIN
+	insert into group_msg_views (msg_id, group_id, viewer_id, viewed)
+	SELECT NEW.id, NEW.group_id, member_id, false as 'abnc'
+    FROM group_members WHERE
+    group_members.group_id=NEW.group_id;
+END$$
+DELIMITER ;
 
 CREATE USER 'server_user'@'localhost' IDENTIFIED BY '123';
 

@@ -7,31 +7,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="577d9e09-a645-45e2-890d-9a3c7fd05001" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../Lion-Chat-Server/.idea/artifacts/Lion_Chat_Server_jar.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Lion-Chat-Server/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Lion-Chat-Server/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Lion-Chat/GroupChatsPanel$1$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Lion-Chat/GroupChatsPanel$1$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Lion-Chat/GroupChatsPanel$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Lion-Chat/GroupChatsPanel$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Lion-Chat/GroupChatsPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Lion-Chat/GroupChatsPanel.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Lion-Chat/GroupMessagePanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Lion-Chat/GroupMessagePanel.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Lion-Chat/LoginPanel$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Lion-Chat/LoginPanel$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Lion-Chat/LoginPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Lion-Chat/LoginPanel.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Lion-Chat/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Lion-Chat/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Lion-Chat/MessagesPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Lion-Chat/MessagesPanel.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Lion-Chat/MidPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Lion-Chat/MidPanel.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Lion-Chat/PrivateMessagePanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Lion-Chat/PrivateMessagePanel.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Lion-Chat/UsersPanel$1$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Lion-Chat/UsersPanel$1$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Lion-Chat/UsersPanel$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Lion-Chat/UsersPanel$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Lion-Chat/UsersPanel$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Lion-Chat/UsersPanel$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Lion-Chat/UsersPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Lion-Chat/UsersPanel.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GroupChatsPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GroupChatsPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GroupMessagePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GroupMessagePanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LoginPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LoginPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MessagesPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MessagesPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MidPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MidPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/PrivateMessagePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/PrivateMessagePanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/UsersPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UsersPanel.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -107,22 +84,22 @@
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="741" y="288" width="428" height="472" key="FileChooserDialogImpl/0.0.1920.1080@0.0.1920.1080" timestamp="1587803070394" />
-    <state width="1864" height="277" key="GridCell.Tab.0.bottom" timestamp="1592590184385">
+    <state width="1864" height="277" key="GridCell.Tab.0.bottom" timestamp="1592901129850">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1864" height="277" key="GridCell.Tab.0.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1592590184385" />
-    <state width="1864" height="277" key="GridCell.Tab.0.center" timestamp="1592590184385">
+    <state width="1864" height="277" key="GridCell.Tab.0.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1592901129850" />
+    <state width="1864" height="277" key="GridCell.Tab.0.center" timestamp="1592901129850">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1864" height="277" key="GridCell.Tab.0.center/0.0.1920.1080@0.0.1920.1080" timestamp="1592590184385" />
-    <state width="1864" height="277" key="GridCell.Tab.0.left" timestamp="1592590184385">
+    <state width="1864" height="277" key="GridCell.Tab.0.center/0.0.1920.1080@0.0.1920.1080" timestamp="1592901129850" />
+    <state width="1864" height="277" key="GridCell.Tab.0.left" timestamp="1592901129850">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1864" height="277" key="GridCell.Tab.0.left/0.0.1920.1080@0.0.1920.1080" timestamp="1592590184385" />
-    <state width="1864" height="277" key="GridCell.Tab.0.right" timestamp="1592590184385">
+    <state width="1864" height="277" key="GridCell.Tab.0.left/0.0.1920.1080@0.0.1920.1080" timestamp="1592901129850" />
+    <state width="1864" height="277" key="GridCell.Tab.0.right" timestamp="1592901129850">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1864" height="277" key="GridCell.Tab.0.right/0.0.1920.1080@0.0.1920.1080" timestamp="1592590184385" />
+    <state width="1864" height="277" key="GridCell.Tab.0.right/0.0.1920.1080@0.0.1920.1080" timestamp="1592901129850" />
     <state width="1864" height="351" key="GridCell.Tab.1.bottom" timestamp="1591891640516">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
@@ -143,10 +120,10 @@
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="884" y="107" width="1028" height="833" key="SettingsEditor/0.0.1920.1080@0.0.1920.1080" timestamp="1592573343636" />
-    <state x="1078" y="118" width="701" height="740" key="new project wizard" timestamp="1587803095225">
+    <state x="1076" y="102" width="701" height="740" key="new project wizard" timestamp="1592934586916">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state x="1078" y="118" width="701" height="740" key="new project wizard/0.0.1920.1080@0.0.1920.1080" timestamp="1587803095225" />
+    <state x="1076" y="102" width="701" height="740" key="new project wizard/0.0.1920.1080@0.0.1920.1080" timestamp="1592934586916" />
     <state x="755" y="282" width="399" height="484" key="refactoring.ChangeSignatureDialog" timestamp="1591732076686">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>

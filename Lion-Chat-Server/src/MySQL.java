@@ -172,6 +172,8 @@ public class MySQL {
             ResultSet rs = stmt.executeQuery(
                     "INSERT INTO group_messages (group_id, author_id, text) VALUES(" + groupId + ", " + authorId + ", '" + text + "');"
             );
+            return;
+            /*
             // tutaj bedzie wyzwalacz
             rs = stmt.executeQuery(
                     "SELECT id FROM group_messages ORDER BY id DESC LIMIT 1;"
@@ -199,6 +201,7 @@ public class MySQL {
                     );
                 }
             }
+            */
         }
     }
 
