@@ -7,14 +7,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fd09e8de-0a6c-431c-b9b1-0c0c4466ecc4" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/MySQL.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MySQL.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Lion-Chat/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Lion-Chat/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Lion-Chat/out/production/Lion-Chat/UsersPanel$1$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Lion-Chat/out/production/Lion-Chat/UsersPanel$1$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Lion-Chat/out/production/Lion-Chat/UsersPanel$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Lion-Chat/out/production/Lion-Chat/UsersPanel$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Lion-Chat/out/production/Lion-Chat/UsersPanel$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Lion-Chat/out/production/Lion-Chat/UsersPanel$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Lion-Chat/out/production/Lion-Chat/UsersPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Lion-Chat/out/production/Lion-Chat/UsersPanel.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Lion-Chat/src/UsersPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Lion-Chat/src/UsersPanel.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
