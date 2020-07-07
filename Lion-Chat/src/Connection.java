@@ -31,6 +31,7 @@ public class Connection extends Thread {
 
 
     private BRunnable userPropositionsList;
+    private BRunnable nickChanged;
 
     public Connection() throws IOException {
         String host = "localhost";
@@ -60,7 +61,7 @@ public class Connection extends Thread {
                     afterLogin.setArg(words[2]);
                     SwingUtilities.invokeAndWait(afterLogin);
                 }
-                else if (words.length > 2 && words[0].equals("usersInfo")) {
+                else if (words.length >= 1 && words[0].equals("usersInfo")) {
                     usersInfoUpdate.setArgs(words);
                     SwingUtilities.invokeAndWait(usersInfoUpdate);
                 }
@@ -98,6 +99,11 @@ public class Connection extends Thread {
                     userPropositionsList.setArgs(words);
                     SwingUtilities.invokeAndWait(userPropositionsList);
                 }
+                else if (words.length >= 2 && words[0].equals("nick_changed")) {
+                    System.out.println("nickchanged");
+                    nickChanged.setArgs(words);
+                    SwingUtilities.invokeAndWait(nickChanged);
+                }
 
             }
 
@@ -125,5 +131,6 @@ public class Connection extends Thread {
     public void setGroupMsg(BRunnable groupMsg) { this.groupMsg = groupMsg; }
     public void setGroupMsgNotification(BRunnable groupMsgNotification) { this.groupMsgNotification = groupMsgNotification; }
     public void setUserPropositionsList(BRunnable userPropositionsList) { this.userPropositionsList = userPropositionsList; }
+    public void setNickChanged(BRunnable c) { this.nickChanged = c; }
 
 }

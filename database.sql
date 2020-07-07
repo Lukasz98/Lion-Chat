@@ -88,7 +88,9 @@ GRANT SELECT ON Lion_chat.users TO 'server_user'@'localhost';
 
 GRANT UPDATE ON Lion_chat.group_msg_views TO 'server_user'@'localhost';
 GRANT UPDATE ON Lion_chat.priv_messages TO 'server_user'@'localhost';
+GRANT UPDATE ON Lion_chat.users TO 'server_user'@'localhost';
 
+GRANT DELETE ON Lion_chat.contacts TO 'server_user'@'localhost';
 
 INSERT INTO users (login, passwd) VALUES ('lukasz', unhex(md5('123')));
 INSERT INTO users (login, passwd) VALUES ('lucja', unhex(md5('123')));

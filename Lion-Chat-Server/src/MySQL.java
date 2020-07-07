@@ -214,6 +214,28 @@ public class MySQL {
         }
     }
 
+    public synchronized static void eraseContact(int id1, int id2) throws SQLException{
+        synchronized (mysql) {
+            String query = "DELETE FROM contacts WHERE (user_id1=? AND user_id2=?) OR (user_id2=? AND user_id1=?);";
+            PreparedStatement stmt = mysql.conn.prepareStatement(query);
+            stmt.setInt(1, id1);
+            stmt.setInt(2, id2);
+            stmt.setInt(3, id2);
+            stmt.setInt(4, id1);
+            ResultSet rs = stmt.executeQuery();
+        }
+    }
+
+    public synchronized static void updateNick(int id, String newNick) throws SQLException{
+        synchronized (mysql) {
+            String query = "UPDATE users SET login=? WHERE id=?;";
+            PreparedStatement stmt = mysql.conn.prepareStatement(query);
+            stmt.setString(1, newNick);
+            stmt.setInt(2, id);
+            ResultSet rs = stmt.executeQuery();
+        }
+    }
+
     public synchronized static ResultSet getContacts(int id) throws SQLException{
         synchronized (mysql) {
             String query = "SELECT user_id2 as 'id', login FROM contacts LEFT JOIN users ON users.id=user_id2 WHERE user_id1=?" +

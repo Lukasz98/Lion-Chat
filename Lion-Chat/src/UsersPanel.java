@@ -38,9 +38,44 @@ public class UsersPanel extends JPanel {
         topPanel.setBackground(Color.DARK_GRAY);
         topPanel.setForeground(Color.lightGray);
         //topPanel.setPreferredSize(new Dimension(1000 / 4, 100));
+        JPanel namePanel = new JPanel();
+        namePanel.setBackground(Color.LIGHT_GRAY);
         nameLabel = new JLabel("?");
-        nameLabel.setForeground(Color.LIGHT_GRAY);
-        topPanel.add(nameLabel, BorderLayout.NORTH);
+        nameLabel.setForeground(Color.DARK_GRAY);
+        JButton updateName = new JButton("Edit nick");
+
+        updateName.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                JPanel mainPanel = new JPanel();
+                mainPanel.setLayout(new BorderLayout());
+                mainPanel.setPreferredSize(new Dimension(1000 / 4 -20, 50));
+
+                JPanel writerPanel = new JPanel();
+                writerPanel.setPreferredSize(new Dimension(1000 /4 -20, 50));
+                writerPanel.setBackground(Color.black);
+                JTextField textField = new JTextField();
+                textField.setPreferredSize(new Dimension(1000 /4 - 40, 30));
+                textField.setBackground(Color.GRAY);
+                textField.setForeground(Color.WHITE);
+                textField.grabFocus();
+                writerPanel.add(textField);
+                mainPanel.add(writerPanel, BorderLayout.NORTH);
+
+                int val = JOptionPane.showOptionDialog(null, mainPanel, "testst ",
+                        JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE, null, new String[]{"change", "cancel"}, 0);
+                if (val == 0 && textField.getText().length() > 3) {
+                    System.out.println("done marked");
+                    connection.send("change_nick " + textField.getText());
+                    nameLabel.setText(textField.getText());
+                }
+
+            }
+        });
+
+        namePanel.add(nameLabel);
+        namePanel.add(updateName);
+        topPanel.add(namePanel, BorderLayout.NORTH);
         //title.setPreferredSize(new Dimension(50, 50));
 
         addUserLabel.setBackground(Color.DARK_GRAY);
@@ -78,11 +113,22 @@ public class UsersPanel extends JPanel {
         nameLabel.repaint();
     }
 
+    public void updateUserNick(String id, String nick) {
+        Component rr[] = usersPanel.getComponents();
+        for (int i = 0; i < rr.length; i++) {
+            if (rr[i].getName().equals(id)) {
+                ((JButton)((JPanel)rr[i]).getComponents()[0]).setText(nick + " Id=" + id);
+                break;
+            }
+        }
+    }
+
     public void setUsersInfo(String [] info) {
         usersPanel.removeAll();
 
         for (int i = 1; i + 1 < info.length; i += 2) {
             JPanel ppp = new JPanel();
+            ppp.setName(info[i]);
             ppp.setBackground(Color.DARK_GRAY);
             ppp.setPreferredSize(new Dimension(1000 / 4 + 20, 50));
             ppp.setMaximumSize(new Dimension(1000 / 4 + 20, 50));
@@ -104,7 +150,12 @@ public class UsersPanel extends JPanel {
             bb.setMinimumSize(new Dimension(1000 / 12, 40));
             bb.setPreferredSize(new Dimension(1000 / 12, 40));
             bb.setMaximumSize(new Dimension(1000 / 12, 40));
-            bb.addActionListener(clickOnUser);
+            bb.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent actionEvent) {
+                    connection.send("erase_contact " + ((JButton)actionEvent.getSource()).getName());
+                }
+            });
             bb.setBackground(Color.LIGHT_GRAY);
             ppp.add(bb);
             usersPanel.add(ppp);
@@ -116,8 +167,9 @@ public class UsersPanel extends JPanel {
         Component [] c = usersPanel.getComponents();
         for (int i = 0 ; i < c.length; i++) {
             if (c[i].getName() != null && c[i].getName().equals(id)) {
-                ((JButton)c[i]).setBackground(Color.red);
-                break;
+                //((JButton)c[i]).setBackground(Color.red);
+                ((JPanel)c[i]).setBackground(Color.red);
+                //break;
             }
         }
     }
@@ -127,8 +179,9 @@ public class UsersPanel extends JPanel {
         for (int i = 0 ; i < c.length; i++) {
             System.out.println("attatatata");
             if (c[i].getName() != null && c[i].getName().equals(String.valueOf(id))) {
-                ((JButton)c[i]).setBackground(Color.LIGHT_GRAY);
-                break;
+                //((JButton)c[i]).setBackground(Color.LIGHT_GRAY);
+                ((JPanel)c[i]).setBackground(Color.LIGHT_GRAY);
+                //break;
             }
         }
     }

@@ -275,6 +275,29 @@ public class ClientThread extends Thread {
         }
     }
 
+    private void eraseContact(String contactId) {
+        try {
+            MySQL.eraseContact(id, Integer.valueOf(contactId));
+            sendUsersInfo();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void changeNick(String newNick) {
+        try {
+            MySQL.updateNick(id, newNick);
+            sendUsersInfo();
+
+            ResultSet rs = MySQL.getContacts(id);
+            while (rs.next()) {
+                OnlineClientList.sendNewMessage("nick_changed " + id + " " + newNick, rs.getInt("id"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     private void sendUsersInfo() {
         try {
             ResultSet rs = MySQL.getContacts(id);
@@ -284,9 +307,9 @@ public class ClientThread extends Thread {
                 String uname = rs.getString("login");
                 msg += Integer.toString(uid) + " " + uname + " ";
             }
-            if (msg.length() > 10) {
+            //if (msg.length() > 10) {
                 send(msg);
-            }
+            //}
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -349,6 +372,12 @@ public class ClientThread extends Thread {
                     }
                     else if (words.length >= 2 && words[0].equals("add_contact")) {
                         addContact(words[1]);
+                    }
+                    else if (words.length >= 2 && words[0].equals("erase_contact")) {
+                        eraseContact(words[1]);
+                    }
+                    else if (words.length >= 2 && words[0].equals("change_nick")) {
+                        changeNick(words[1]);
                     }
                 }
                 else

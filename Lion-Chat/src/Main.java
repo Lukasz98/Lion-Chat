@@ -97,6 +97,18 @@ public class Main {
             }
         };
 
+        BRunnable nickChanged = new BRunnable() {
+            private String[] args;
+            @Override
+            public void setArgs(String [] args) { this.args = args; }
+            @Override
+            public void run() {
+                usersPanel.updateUserNick(args[1], args[2]);
+                frame.setVisible(true);
+            }
+        };
+        connection.setNickChanged(nickChanged);
+
         BRunnable newPrivMsg = new BRunnable() {
             private String[] args;
             @Override
