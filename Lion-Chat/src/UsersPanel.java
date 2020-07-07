@@ -82,14 +82,32 @@ public class UsersPanel extends JPanel {
         usersPanel.removeAll();
 
         for (int i = 1; i + 1 < info.length; i += 2) {
+            JPanel ppp = new JPanel();
+            ppp.setBackground(Color.DARK_GRAY);
+            ppp.setPreferredSize(new Dimension(1000 / 4 + 20, 50));
+            ppp.setMaximumSize(new Dimension(1000 / 4 + 20, 50));
+            ppp.setMinimumSize(new Dimension(1000 / 4 + 20, 50));
             JButton b = new JButton(info[i + 1] + " id=" + info[i]);
             b.setName(info[i]); // name = id
-            b.setMinimumSize(new Dimension(1000 / 4, 40));
-            b.setPreferredSize(new Dimension(1000 / 4, 40));
-            b.setMaximumSize(new Dimension(1000 / 4, 40));
+            b.setMinimumSize(new Dimension(1000 / 8, 40));
+            b.setPreferredSize(new Dimension(1000 / 8, 40));
+            b.setMaximumSize(new Dimension(1000 / 8, 40));
             b.addActionListener(clickOnUser);
             b.setBackground(Color.LIGHT_GRAY);
-            usersPanel.add(b);
+
+            ppp.add(b);
+//            usersPanel.add(b);
+
+
+            JButton bb = new JButton("X");
+            bb.setName(info[i]); // name = id
+            bb.setMinimumSize(new Dimension(1000 / 12, 40));
+            bb.setPreferredSize(new Dimension(1000 / 12, 40));
+            bb.setMaximumSize(new Dimension(1000 / 12, 40));
+            bb.addActionListener(clickOnUser);
+            bb.setBackground(Color.LIGHT_GRAY);
+            ppp.add(bb);
+            usersPanel.add(ppp);
         }
         usersPanel.repaint();
     }
