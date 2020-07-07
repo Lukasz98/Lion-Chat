@@ -140,13 +140,15 @@ public class UsersPanel extends JPanel {
 
                 textField.addKeyListener(new KeyListener() {
                     @Override
-                    public void keyTyped(KeyEvent keyEvent) {
+                    public void keyTyped(KeyEvent keyEvent) {}
+                    @Override
+                    public void keyPressed(KeyEvent keyEvent) {
                         connection.send("get_users_like " + textField.getText());
                     }
                     @Override
-                    public void keyPressed(KeyEvent keyEvent) {}
-                    @Override
-                    public void keyReleased(KeyEvent keyEvent) {}
+                    public void keyReleased(KeyEvent keyEvent) {
+                        connection.send("get_users_like " + textField.getText());
+                    }
                 });
 
 

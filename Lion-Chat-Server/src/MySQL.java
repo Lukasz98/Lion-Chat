@@ -23,10 +23,11 @@ public class MySQL {
     public synchronized static int tryToLogin(String login, String passwd) {
         synchronized (mysql) {
             try {
-                Statement stmt = mysql.conn.createStatement();
-                ResultSet rs = stmt.executeQuery(
-                    "SELECT id, login, passwd FROM users WHERE login='" + login + "' AND passwd=unhex(md5('" + passwd + "'));"
-                );
+                String query = "SELECT id, login, passwd FROM users WHERE login=? AND passwd=unhex(md5(?));";
+                PreparedStatement stmt = mysql.conn.prepareStatement(query);
+                stmt.setString(1, login);
+                stmt.setString(2, passwd);
+                ResultSet rs = stmt.executeQuery();
                 while (rs.next()) {
                     System.out.println(rs.getString("login"));
                     return rs.getInt("id");
@@ -37,7 +38,7 @@ public class MySQL {
         }
         return -1;
     }
-
+/*
     public synchronized static ResultSet getUsersInfo() {
         synchronized (mysql) {
             try {
@@ -52,7 +53,7 @@ public class MySQL {
         }
         return null;
     }
-
+*/
     public synchronized static ResultSet getPrivMsgs(int auth1, int auth2) {
         synchronized (mysql) {
             try {
@@ -77,7 +78,6 @@ public class MySQL {
                 ResultSet rs = stmt.executeQuery(
                         "UPDATE priv_messages SET viewed=true WHERE" +
                                 " (priv_messages.receiver_id=" + id1 + "" + " AND priv_messages.sender_id=" + id2 + ") "
-//                                " (priv_messages.receiver_id=" + id1 + "" + " AND priv_messages.sender_id=" + id1 + ");"
                 );
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -103,10 +103,16 @@ public class MySQL {
 
     public synchronized static void sendNewPrivMsg(int authorId, int receiverId, String text) throws SQLException{
         synchronized (mysql) {
-                Statement stmt = mysql.conn.createStatement();
-                ResultSet rs = stmt.executeQuery(
-                        "INSERT INTO priv_messages (sender_id, receiver_id, text, viewed) VALUES(" + authorId + ", " + receiverId + ", '" + text + "', false);"
-                );
+//                Statement stmt = mysql.conn.createStatement();
+  //              ResultSet rs = stmt.executeQuery(
+    //                    "INSERT INTO priv_messages (sender_id, receiver_id, text, viewed) VALUES(" + authorId + ", " + receiverId + ", '" + text + "', false);"
+      //          );/*  ab', false); delete * from priv_messages; insert into priv_messages values(null, 1, 2, 'ddd */
+
+            String query = "INSERT INTO priv_messages (sender_id, receiver_id, text, viewed) VALUES(" + authorId + ", " + receiverId + ", ?, false);";
+//            ;"SELECT id, login, passwd FROM users WHERE login=? AND passwd=unhex(md5(?));";
+            PreparedStatement stmt = mysql.conn.prepareStatement(query);
+            stmt.setString(1, text);
+            ResultSet rs = stmt.executeQuery();
         }
     }
 
@@ -168,40 +174,18 @@ public class MySQL {
 
     public synchronized static void sendGroupMsg(int authorId, int groupId, String text) throws SQLException{
         synchronized (mysql) {
+            String query = "INSERT INTO group_messages (group_id, author_id, text) VALUES(" + groupId + ", " + authorId + ", ?);";
+            PreparedStatement stmt = mysql.conn.prepareStatement(query);
+            stmt.setString(1, text);
+            ResultSet rs = stmt.executeQuery();
+            //return rs;
+            /*
             Statement stmt = mysql.conn.createStatement();
             ResultSet rs = stmt.executeQuery(
                     "INSERT INTO group_messages (group_id, author_id, text) VALUES(" + groupId + ", " + authorId + ", '" + text + "');"
             );
             return;
-            /*
-            // tutaj bedzie wyzwalacz
-            rs = stmt.executeQuery(
-                    "SELECT id FROM group_messages ORDER BY id DESC LIMIT 1;"
-            );
-            int msgId = -1;
-            while (rs.next()) {
-                msgId = rs.getInt("id");
-            }
-
-            rs = stmt.executeQuery(
-                    "SELECT member_id FROM group_members WHERE group_id=" + groupId + ";"
-            );
-
-            while (rs.next()) {
-                int memberId = rs.getInt("member_id");
-                System.out.println("MEMBER: " + memberId);
-                if (authorId == memberId) {
-                    stmt.executeQuery(
-                            "INSERT INTO group_msg_views (msg_id, group_id, viewer_id, viewed) VALUES(" + msgId + ", " + groupId + ", " + memberId + ", true);"
-                    );
-                }
-                else {
-                    stmt.executeQuery(
-                            "INSERT INTO group_msg_views (msg_id, group_id, viewer_id, viewed) VALUES(" + msgId + ", " + groupId + ", " + memberId + ", false);"
-                    );
-                }
-            }
-            */
+  */
         }
     }
 
@@ -227,10 +211,17 @@ public class MySQL {
 
     public synchronized static ResultSet getListOfUsersLike(String name) throws SQLException{
         synchronized (mysql) {
+            String query = "SELECT login, id FROM users WHERE login LIKE ?;";
+            //"INSERT INTO group_messages (group_id, author_id, text) VALUES(" + groupId + ", " + authorId + ", ?);";
+            PreparedStatement stmt = mysql.conn.prepareStatement(query);
+            stmt.setString(1, name + "%");
+            ResultSet rs = stmt.executeQuery();
+/*
             Statement stmt = mysql.conn.createStatement();
             ResultSet rs = stmt.executeQuery(
                     "SELECT login, id FROM users WHERE login LIKE '" + name + "%';"
             );
+  */
             return rs;
         }
     }
@@ -264,19 +255,6 @@ public class MySQL {
                     "SELECT login FROM users WHERE id=" + id + ";"
             );
             return rs;
-        }
-    }
-
-    public static void LoadPrintTest() {
-        try {
-            Statement stmt = mysql.conn.createStatement();
-            stmt.executeQuery("use Lion_chat");
-            ResultSet rs = stmt.executeQuery("SELECT * FROM users");
-            while (rs.next()) {
-                System.out.println(rs.getString("login"));
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
         }
     }
 
